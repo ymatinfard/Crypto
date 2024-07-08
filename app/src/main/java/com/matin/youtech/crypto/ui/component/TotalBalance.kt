@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -19,11 +18,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun TotalBalance(depositClick: () -> Unit) {
+fun TotalBalance(modifier: Modifier, depositClick: () -> Unit) {
     Column(
-        modifier = Modifier
-            .padding(8.dp)
-            .fillMaxWidth()
+        modifier = modifier.fillMaxWidth()
     ) {
         Text(text = "Total Balance")
         Row(

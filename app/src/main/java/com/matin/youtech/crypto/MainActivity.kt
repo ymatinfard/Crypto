@@ -10,7 +10,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.matin.youtech.crypto.ui.MainScreen
+import com.matin.youtech.crypto.ui.screen.MainScreen
 import com.matin.youtech.crypto.ui.theme.CryptoTheme
 
 class MainActivity : ComponentActivity() {

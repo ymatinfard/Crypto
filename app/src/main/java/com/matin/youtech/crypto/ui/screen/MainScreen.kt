@@ -1,4 +1,4 @@
-package com.matin.youtech.crypto.ui
+package com.matin.youtech.crypto.ui.screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -17,8 +17,7 @@ import com.matin.youtech.crypto.ui.theme.CryptoTheme
 fun MainScreen(modifier: Modifier, depositClick: () -> Unit = {}) {
     Column(modifier = modifier.padding(horizontal = 8.dp)) {
         MainTopBar()
-        Spacer(modifier = Modifier.height(4.dp))
-        TotalBalance(depositClick)
+        TotalBalance(modifier = Modifier.padding(vertical = 8.dp), depositClick)
         BannerPager()
     }
 }
