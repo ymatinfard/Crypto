@@ -38,15 +38,15 @@ android {
         }
     }
     buildTypes {
-       create("staging") {
-            applicationIdSuffix = CryptoBuildType.Staging.suffix
+        create("staging") {
+            applicationIdSuffix = ".staging"
             isMinifyEnabled = false
             isDebuggable = true
+            versionNameSuffix = "-staging"
         }
         release {
             isMinifyEnabled = true
             signingConfig = signingConfigs.getByName("release")
-            applicationIdSuffix = CryptoBuildType.Release.suffix
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -71,6 +71,17 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    applicationVariants.all {
+        outputs.all {
+            val newName = when (buildType.name) {
+                "release" -> "${project.name}-${buildType.name}-${versionName}.apk"
+                "staging" -> "${project.name}-${buildType.name}-${versionName}.apk"
+                else -> "${project.name}-${buildType.name}-${versionName}.apk"
+            }
+            (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl).outputFileName =
+                newName
+        }
+    }
 }
 
 dependencies {
@@ -83,8 +94,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation (libs.accompanist.pager)
-    implementation (libs.accompanist.pager.indicators)
+    implementation(libs.accompanist.pager)
+    implementation(libs.accompanist.pager.indicators)
     implementation(libs.androidx.tools.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -93,9 +104,4 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-}
-
-enum class CryptoBuildType(val suffix: String? = "") {
-    Staging(".staging"),
-    Release
 }
