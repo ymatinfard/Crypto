@@ -10,6 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.matin.youtech.crypto.ui.component.BannerPager
 import com.matin.youtech.crypto.ui.component.MainTopBar
+import com.matin.youtech.crypto.ui.component.MarketTab
 import com.matin.youtech.crypto.ui.component.TotalBalance
 import com.matin.youtech.crypto.ui.theme.CryptoTheme
 
@@ -19,6 +20,8 @@ fun MainScreen(modifier: Modifier, depositClick: () -> Unit = {}) {
         MainTopBar()
         TotalBalance(modifier = Modifier.padding(vertical = 8.dp), depositClick)
         BannerPager()
+        Spacer(modifier = Modifier.height(16.dp))
+        MarketTab()
     }
 }
 

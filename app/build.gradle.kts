@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation (libs.accompanist.pager)
     implementation (libs.accompanist.pager.indicators)
+    implementation(libs.androidx.tools.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
