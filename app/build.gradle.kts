@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -5,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.matin.youtech.crypto"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.matin.youtech.crypto"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -20,9 +22,31 @@ android {
         }
     }
 
+    val signingPropertiesFile = rootProject.file("signing.properties")
+    val signingProperties = Properties()
+
+    if (signingPropertiesFile.exists()) {
+        signingProperties.load(signingPropertiesFile.inputStream())
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = file(signingProperties["release.storeFile"] as String)
+            storePassword = signingProperties["release.storePassword"] as String
+            keyAlias = signingProperties["release.keyAlias"] as String
+            keyPassword = signingProperties["release.keyPassword"] as String
+        }
+    }
     buildTypes {
-        release {
+       create("staging") {
+            applicationIdSuffix = CryptoBuildType.Staging.suffix
             isMinifyEnabled = false
+            isDebuggable = true
+        }
+        release {
+            isMinifyEnabled = true
+            signingConfig = signingConfigs.getByName("release")
+            applicationIdSuffix = CryptoBuildType.Release.suffix
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -69,4 +93,9 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+enum class CryptoBuildType(val suffix: String? = "") {
+    Staging(".staging"),
+    Release
 }
