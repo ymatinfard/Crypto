@@ -11,17 +11,22 @@ import androidx.compose.ui.unit.dp
 import com.matin.youtech.crypto.ui.component.BannerPager
 import com.matin.youtech.crypto.ui.component.MainTopBar
 import com.matin.youtech.crypto.ui.component.MarketTab
+import com.matin.youtech.crypto.ui.component.MarketTabAction
 import com.matin.youtech.crypto.ui.component.TotalBalance
 import com.matin.youtech.crypto.ui.theme.CryptoTheme
 
 @Composable
-fun MainScreen(modifier: Modifier, depositClick: () -> Unit = {}) {
+fun MainScreen(modifier: Modifier, viewModel: MainScreenViewModel = MainScreenViewModel()) {
     Column(modifier = modifier.padding(horizontal = 8.dp)) {
         MainTopBar()
-        TotalBalance(modifier = Modifier.padding(vertical = 8.dp), depositClick)
-        BannerPager()
+        TotalBalance(modifier = Modifier.padding(vertical = 8.dp)) {
+            viewModel.intentToAction(MainScreenIntent.DepositClick)
+        }
         Spacer(modifier = Modifier.height(16.dp))
-        MarketTab()
+        BannerPager()
+        MarketTab(modifier = Modifier.padding(top = 16.dp)) { action ->
+            viewModel.intentToAction(MainScreenIntent.MarketTabClick(action))
+        }
     }
 }
 
@@ -31,4 +36,9 @@ fun CryptoMainTopBarPreview() {
     CryptoTheme {
         MainScreen(modifier = Modifier)
     }
+}
+
+interface MainScreenIntent {
+    data object DepositClick : MainScreenIntent
+    data class MarketTabClick(val action: MarketTabAction) : MainScreenIntent
 }

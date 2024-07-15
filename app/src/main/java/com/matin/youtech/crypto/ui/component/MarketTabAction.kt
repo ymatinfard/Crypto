@@ -17,7 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -25,23 +25,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.matin.youtech.crypto.R
 
-@Preview
 @Composable
-fun MarketTab() {
-    var selectedIndex by remember { mutableIntStateOf(0) }
-    LazyRow(contentPadding = PaddingValues(horizontal = 4.dp)) {
-        items(MarketTabItemList) {
+fun MarketTab(modifier: Modifier, selectedTab: (MarketTabAction) -> Unit = {}) {
+    var selectedAction by remember { mutableStateOf<MarketTabAction>(MarketTabAction.Hot) }
+    LazyRow(modifier = modifier, contentPadding = PaddingValues(horizontal = 4.dp)) {
+        items(MarketTabItemList) { tabItem ->
             MarketTabItem(
-                name = it.name,
-                type = it.type,
-                isSelected = (selectedIndex == MarketTabItemList.indexOf(it)),
-                modifier = Modifier.padding(horizontal = 2.dp)
-            ) {
-                selectedIndex = MarketTabItemList.indexOf(it)
+                modifier = Modifier.padding(horizontal = 2.dp),
+                item = tabItem,
+                isSelected = tabItem.action == selectedAction,
+            ) { action ->
+                selectedAction = action
+                selectedTab(action)
             }
         }
     }
@@ -50,10 +48,9 @@ fun MarketTab() {
 @Composable
 fun MarketTabItem(
     modifier: Modifier,
-    name: String,
-    type: ItemType,
+    item: TabItem,
     isSelected: Boolean = false,
-    onClick: () -> Unit = {}
+    onClick: (MarketTabAction) -> Unit = {}
 ) {
     Box(
         modifier = modifier
@@ -61,12 +58,12 @@ fun MarketTabItem(
             .background(color = if (isSelected) MaterialTheme.colorScheme.tertiary else Color.Transparent)
             .padding(horizontal = 6.dp)
             .height(24.dp)
-            .clickable { onClick() },
+            .clickable { onClick(item.action) },
         contentAlignment = Alignment.Center,
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(text = name)
-            if (type == ItemType.Switch) {
+            Text(text = item.name)
+            if (item.type == Item.Switch) {
                 Column(modifier = Modifier.padding(start = 4.dp)) {
                     Icon(
                         painter = painterResource(R.drawable.arrow_up),
@@ -85,24 +82,23 @@ fun MarketTabItem(
     }
 }
 
-//sealed class MarketTabAction(val name: String, type: ItemType) {
-//    data class Hot(val hotName: String, val type: ItemType = ItemType.Simple) : MarketTabAction(hotName, type)
-//    data class MarketCap(val marketCapName: String) : MarketTabAction(marketCapName)
-//    data class Price(val priceName: String) : MarketTabAction(priceName)
-//    data class TwentyFourChange(val twentyFourChangeName: String) :
-//        MarketTabAction(twentyFourChangeName)
-//}
-//
+sealed interface MarketTabAction {
+    data object Hot : MarketTabAction
+    data object MarketCap : MarketTabAction
+    data object Price : MarketTabAction
+    data object TwentyFourChange : MarketTabAction
+}
+
 val MarketTabItemList = listOf(
-    TabItem("Hot", ItemType.Simple),
-    TabItem("MarketCap", ItemType.Simple),
-    TabItem("Price", ItemType.Switch),
-    TabItem("24Changes", ItemType.Switch),
+    TabItem("Hot", Item.Simple, MarketTabAction.Hot),
+    TabItem("MarketCap", Item.Simple, MarketTabAction.MarketCap),
+    TabItem("Price", Item.Switch, MarketTabAction.Price),
+    TabItem("24Changes", Item.Switch, MarketTabAction.TwentyFourChange),
 )
 
-data class TabItem(val name: String, val type: ItemType)
+data class TabItem(val name: String, val type: Item, val action: MarketTabAction)
 
-enum class ItemType {
+enum class Item {
     Switch,
     Simple
 }
