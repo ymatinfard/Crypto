@@ -1,4 +1,4 @@
-package com.matin.youtech.crypto.ui.model
+package com.matin.youtech.crypto.domain
 
 data class MarketListItem(
     val icon: String = "",

@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.matin.youtech.crypto.ui.model.MarketListItem
+import com.matin.youtech.crypto.domain.MarketListItem
 
 @Composable
 fun MarketList(marketList: List<MarketListItem>) {
