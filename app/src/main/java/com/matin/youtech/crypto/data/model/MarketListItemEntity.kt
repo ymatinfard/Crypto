@@ -1,6 +1,7 @@
 package com.matin.youtech.crypto.data.model
 
 import com.matin.youtech.crypto.domain.MarketListItem
+import java.math.BigDecimal
 
 data class MarketListItemEntity(
     val coinName: String = "BTC",
@@ -14,6 +15,6 @@ data class MarketListItemEntity(
         coinUrl = coinUrl,
         ticker = ticker,
         priceChange = priceChange,
-        price = price
+        price = BigDecimal(price).setScale(2, BigDecimal.ROUND_FLOOR)
     )
 }

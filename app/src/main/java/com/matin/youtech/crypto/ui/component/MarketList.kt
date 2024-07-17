@@ -71,7 +71,7 @@ fun MarketItemRow(item: MarketListItem = MarketListItem()) {
                 fontSize = 14.sp
             )
             Text(
-                text = item.price,
+                text = item.price.toString(),
                 color = Color.White,
                 fontSize = 12.sp
             )

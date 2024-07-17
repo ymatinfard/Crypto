@@ -5,6 +5,7 @@ import com.matin.youtech.crypto.domain.MarketListItem
 import org.junit.Assert.*
 
 import org.junit.Test
+import java.math.BigDecimal
 
 class MarketListItemEntityTest {
 
@@ -22,7 +23,7 @@ class MarketListItemEntityTest {
             coinUrl = "https://github.com/spothq/cryptocurrency-icons/blob/master/32/color/btc.png",
             ticker = "123",
             priceChange = "3%",
-            price = "123.123"
+            price = BigDecimal("123.12")
         )
         assertEquals(marketListItemDomain, marketListItemEntity.toDomain())
     }
@@ -42,7 +43,7 @@ class MarketListItemEntityTest {
                 coinUrl = "https://github.com/spothq/cryptocurrency-icons/blob/master/32/color/dash.png",
                 ticker = "354",
                 priceChange = "3%",
-                price = "345.345"
+                price = "345.346"
             )
         )
 
@@ -52,14 +53,14 @@ class MarketListItemEntityTest {
                 coinUrl = "https://github.com/spothq/cryptocurrency-icons/blob/master/32/color/btc.png",
                 ticker = "123",
                 priceChange = "3%",
-                price = "123.123"
+                price = BigDecimal("123.12")
             ),
             MarketListItem(
                 coinName = "DASH",
                 coinUrl = "https://github.com/spothq/cryptocurrency-icons/blob/master/32/color/dash.png",
                 ticker = "354",
                 priceChange = "3%",
-                price = "345.345"
+                price = BigDecimal("345.34")
             )
         )
 
