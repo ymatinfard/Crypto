@@ -16,9 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.matin.youtech.crypto.ui.screen.MainScreenIntent
 
 @Composable
-fun TotalBalance(modifier: Modifier, depositClick: () -> Unit) {
+fun TotalBalance(modifier: Modifier, depositClick: (MainScreenIntent) -> Unit) {
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
@@ -31,7 +32,7 @@ fun TotalBalance(modifier: Modifier, depositClick: () -> Unit) {
             Text(text = "$10,789.12", fontSize = 22.sp, fontWeight = FontWeight.Bold)
             Button(
                 modifier = Modifier.height(32.dp),
-                onClick = { depositClick() },
+                onClick = { depositClick(MainScreenIntent.DepositClick) },
                 contentPadding = PaddingValues(horizontal = 18.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
 

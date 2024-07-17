@@ -51,7 +51,7 @@ fun MarketItemRow(item: MarketListItem = MarketListItem()) {
             Spacer(modifier = Modifier.width(8.dp))
             Column {
                 Text(
-                    text = item.coinUrl,
+                    text = item.coinName,
                     color = Color.White,
                     fontSize = 16.sp
                 )
