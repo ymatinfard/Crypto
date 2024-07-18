@@ -16,8 +16,8 @@ class RemoteDataSourceImpl @Inject constructor(private val scope: CoroutineScope
     RemoteDataSource {
     override fun getMarketList(): Flow<List<MarketListItemEntity>> = flow {
         while (true) {
+            delay(2000)
             emit(getFakeMarketList())
-            delay(1000)
         }
     }
 }

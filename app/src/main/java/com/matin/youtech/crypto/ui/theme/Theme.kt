@@ -1,9 +1,8 @@
 package com.matin.youtech.crypto.ui.theme
 
 import android.os.Build
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Shapes
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -35,8 +34,9 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun CryptoTheme(
-    // darkTheme: Boolean = isSystemInDarkTheme(),
-    darkTheme: Boolean = false,
+     darkTheme: Boolean = isSystemInDarkTheme(),
+     androidTheme: Boolean = false,
+     disableDynamicTheming: Boolean = true,
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit

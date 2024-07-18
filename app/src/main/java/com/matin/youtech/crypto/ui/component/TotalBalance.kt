@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.matin.youtech.crypto.ui.screen.MainScreenIntent
+import com.matin.youtech.crypto.ui.theme.CryptoTheme
 
 @Composable
 fun TotalBalance(modifier: Modifier, depositClick: (MainScreenIntent) -> Unit) {
@@ -38,8 +39,20 @@ fun TotalBalance(modifier: Modifier, depositClick: (MainScreenIntent) -> Unit) {
                 onClick = { depositClick(MainScreenIntent.DepositClick) },
                 contentPadding = PaddingValues(horizontal = 18.dp),
             ) {
-                Text(text = "Deposit", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onPrimary)
+                Text(
+                    text = "Deposit",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
             }
         }
+    }
+}
+
+@ThemePreviews
+@Composable
+fun TotalBalancePreview() {
+    CryptoTheme {
+        TotalBalance(modifier = Modifier) {}
     }
 }

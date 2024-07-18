@@ -1,18 +1,25 @@
 package com.matin.youtech.crypto.ui.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.ui.component.BannerPager
+import com.matin.youtech.crypto.ui.component.CryptoLoadingWheel
+import com.matin.youtech.crypto.ui.component.CryptoOverlayLoadingWheel
 import com.matin.youtech.crypto.ui.component.MainTopBar
 import com.matin.youtech.crypto.ui.component.MarketList
 import com.matin.youtech.crypto.ui.component.MarketTab
@@ -38,7 +45,12 @@ internal fun MainScreen(
 ) {
     when (uiState) {
         is MainScreenUiState.Loading -> {
-            // TODO
+            Box(modifier = Modifier.fillMaxSize()) {
+                CryptoLoadingWheel(
+                    modifier = Modifier.align(Alignment.Center),
+                    contentDesc = stringResource(R.string.loading)
+                )
+            }
         }
 
         is MainScreenUiState.Success -> {
@@ -59,7 +71,7 @@ fun MainScreenContent(
 ) {
     Column(
         modifier = Modifier
-            .background(color = MaterialTheme.colorScheme.surface)
+            .background(color = MaterialTheme.colorScheme.background)
             .padding(horizontal = 12.dp)
     ) {
         MainTopBar()

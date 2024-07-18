@@ -25,12 +25,17 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.matin.youtech.crypto.R
+import com.matin.youtech.crypto.ui.theme.CryptoTheme
+
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun BannerPager() {
     val state = rememberPagerState(pageCount = { BANNER_PAGE_COUNT })
-    val bannerText = arrayOf(stringResource(R.string.invitation_reward_msg))
+    val bannerText = arrayOf(
+        stringResource(R.string.invitation_reward_msg),
+        stringResource(R.string.invitation_reward_msg)
+    )
 
     Column(modifier = Modifier.padding(vertical = 8.dp)) {
         Divider(
@@ -52,14 +57,18 @@ fun BannerPager() {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text(text = buildAnnotatedString {
-                    pushStyle(SpanStyle(color = MaterialTheme.colorScheme.tertiary))
-                    append(stringResource(R.string.new_user_zone))
-                    pop()
-                    appendLine()
-                    pushStyle(SpanStyle(fontWeight = FontWeight.Bold))
-                    append(bannerText[page])
-                })
+                Text(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(end = 4.dp),
+                    text = buildAnnotatedString {
+                        pushStyle(SpanStyle(color = MaterialTheme.colorScheme.tertiary))
+                        append(stringResource(R.string.new_user_zone))
+                        pop()
+                        appendLine()
+                        pushStyle(SpanStyle(fontWeight = FontWeight.Bold))
+                        append(bannerText[page])
+                    })
                 Image(
                     modifier = Modifier.size(42.dp),
                     painter = painterResource(id = R.drawable.ic_bitcoin_increase),
@@ -87,3 +96,11 @@ fun BannerPager() {
 }
 
 const val BANNER_PAGE_COUNT = 2
+
+@ThemePreviews
+@Composable
+fun BannerPagerPreview() {
+    CryptoTheme {
+        BannerPager()
+    }
+}
