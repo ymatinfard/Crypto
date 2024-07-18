@@ -31,7 +31,7 @@ import com.matin.youtech.crypto.R
 @Composable
 fun MarketTab(modifier: Modifier, selectedTab: (MarketTabAction) -> Unit = {}) {
     var selectedAction by remember { mutableStateOf<MarketTabAction>(MarketTabAction.Hot) }
-    LazyRow(modifier = modifier, contentPadding = PaddingValues(horizontal = 4.dp)) {
+    LazyRow(modifier = modifier, contentPadding = PaddingValues(horizontal = 4.dp, vertical = 4.dp)) {
         items(MarketTabItemList) { tabItem ->
             MarketTabItem(
                 modifier = Modifier.padding(horizontal = 2.dp),
@@ -55,8 +55,8 @@ fun MarketTabItem(
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(24.dp))
-            .background(color = if (isSelected) MaterialTheme.colorScheme.tertiary else Color.Transparent)
-            .padding(horizontal = 6.dp)
+            .background(color = if (isSelected) MaterialTheme.colorScheme.tertiaryContainer else Color.Transparent)
+            .padding(horizontal = 8.dp)
             .height(24.dp)
             .clickable { onClick(item.action) },
         contentAlignment = Alignment.Center,
@@ -91,9 +91,9 @@ sealed interface MarketTabAction {
 
 val MarketTabItemList = listOf(
     TabItem("Hot", Item.Simple, MarketTabAction.Hot),
-    TabItem("MarketCap", Item.Simple, MarketTabAction.MarketCap),
+    TabItem("Market Cap", Item.Simple, MarketTabAction.MarketCap),
     TabItem("Price", Item.Switch, MarketTabAction.Price),
-    TabItem("24Changes", Item.Switch, MarketTabAction.TwentyFourChange),
+    TabItem("24H Changes", Item.Switch, MarketTabAction.TwentyFourChange),
 )
 
 data class TabItem(val name: String, val type: Item, val action: MarketTabAction)

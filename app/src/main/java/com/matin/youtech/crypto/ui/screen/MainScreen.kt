@@ -59,8 +59,8 @@ fun MainScreenContent(
 ) {
     Column(
         modifier = Modifier
-            .background(color = MaterialTheme.colorScheme.onSurface)
-            .padding(horizontal = 8.dp)
+            .background(color = MaterialTheme.colorScheme.surface)
+            .padding(horizontal = 12.dp)
     ) {
         MainTopBar()
         TotalBalance(modifier = Modifier.padding(vertical = 8.dp)) { depositClick() }
