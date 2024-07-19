@@ -1,12 +1,16 @@
 package com.matin.youtech.crypto.ui.screen
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -19,9 +23,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.ui.component.BannerPager
 import com.matin.youtech.crypto.ui.component.CryptoLoadingWheel
-import com.matin.youtech.crypto.ui.component.CryptoOverlayLoadingWheel
 import com.matin.youtech.crypto.ui.component.MainTopBar
-import com.matin.youtech.crypto.ui.component.MarketList
+import com.matin.youtech.crypto.ui.component.MarketItemRow
 import com.matin.youtech.crypto.ui.component.MarketTab
 import com.matin.youtech.crypto.ui.component.MarketTabAction
 import com.matin.youtech.crypto.ui.component.TotalBalance
@@ -63,6 +66,7 @@ internal fun MainScreen(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainScreenContent(
     uiState: MainScreenState,
@@ -75,14 +79,36 @@ fun MainScreenContent(
             .padding(horizontal = 12.dp)
     ) {
         MainTopBar()
-        TotalBalance(modifier = Modifier.padding(vertical = 8.dp)) { depositClick() }
-        Spacer(modifier = Modifier.height(16.dp))
-        BannerPager()
-        MarketTab(modifier = Modifier.padding(top = 16.dp)) { action ->
-            marketTabClick(action)
+        LazyColumn(contentPadding = PaddingValues(vertical = 8.dp)) {
+            item {
+                MainContent(depositClick)
+            }
+            stickyHeader {
+                StickyMarketTab(marketTabClick)
+            }
+            items(uiState.marketList) {
+                MarketItemRow(it)
+            }
         }
-        MarketList(marketList = uiState.marketList)
     }
+}
+
+@Composable
+private fun StickyMarketTab(marketTabAction: (MarketTabAction) -> Unit) {
+    MarketTab(
+        modifier = Modifier
+            .background(color = MaterialTheme.colorScheme.background)
+            .padding(top = 16.dp)
+    ) { action ->
+        marketTabAction(action)
+    }
+}
+
+@Composable
+private fun MainContent(depositClick: () -> Unit) {
+    TotalBalance(modifier = Modifier.padding(vertical = 8.dp)) { depositClick() }
+    Spacer(modifier = Modifier.height(16.dp))
+    BannerPager()
 }
 
 @Preview

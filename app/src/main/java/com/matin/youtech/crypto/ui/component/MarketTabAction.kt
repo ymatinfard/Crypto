@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -31,7 +32,7 @@ import com.matin.youtech.crypto.R
 @Composable
 fun MarketTab(modifier: Modifier, selectedTab: (MarketTabAction) -> Unit = {}) {
     var selectedAction by remember { mutableStateOf<MarketTabAction>(MarketTabAction.Hot) }
-    LazyRow(modifier = modifier, contentPadding = PaddingValues(horizontal = 4.dp, vertical = 4.dp)) {
+    LazyRow(modifier = modifier.fillMaxWidth(), contentPadding = PaddingValues(horizontal = 4.dp, vertical = 4.dp)) {
         items(MarketTabItemList) { tabItem ->
             MarketTabItem(
                 modifier = Modifier.padding(horizontal = 2.dp),
