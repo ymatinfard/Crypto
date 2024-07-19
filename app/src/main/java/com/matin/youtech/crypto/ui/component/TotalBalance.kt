@@ -12,8 +12,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.ui.screen.MainScreenIntent
 import com.matin.youtech.crypto.ui.theme.CryptoTheme
 
@@ -22,14 +24,14 @@ fun TotalBalance(modifier: Modifier, depositClick: (MainScreenIntent) -> Unit) {
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
-        Text(text = "Total Balance")
+        Text(text = stringResource(R.string.total_balance))
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "$10,789.12",
+                text = stringResource(R.string.fake_balance),
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold
             )
@@ -40,7 +42,7 @@ fun TotalBalance(modifier: Modifier, depositClick: (MainScreenIntent) -> Unit) {
                 contentPadding = PaddingValues(horizontal = 18.dp),
             ) {
                 Text(
-                    text = "Deposit",
+                    text = stringResource(R.string.deposit),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onPrimary
                 )

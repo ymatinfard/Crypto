@@ -30,9 +30,14 @@ import androidx.compose.ui.unit.dp
 import com.matin.youtech.crypto.R
 
 @Composable
-fun MarketTab(modifier: Modifier, selectedTab: (MarketTabAction) -> Unit = {}) {
+fun MarketTab(modifier: Modifier = Modifier, selectedTab: (MarketTabAction) -> Unit = {}) {
     var selectedAction by remember { mutableStateOf<MarketTabAction>(MarketTabAction.Hot) }
-    LazyRow(modifier = modifier.fillMaxWidth(), contentPadding = PaddingValues(horizontal = 4.dp, vertical = 4.dp)) {
+    LazyRow(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(color = MaterialTheme.colorScheme.background),
+        contentPadding = PaddingValues(vertical = 4.dp)
+    ) {
         items(MarketTabItemList) { tabItem ->
             MarketTabItem(
                 modifier = Modifier.padding(horizontal = 2.dp),

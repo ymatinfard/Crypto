@@ -7,11 +7,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -95,12 +97,18 @@ fun MainScreenContent(
 
 @Composable
 private fun StickyMarketTab(marketTabAction: (MarketTabAction) -> Unit) {
-    MarketTab(
-        modifier = Modifier
-            .background(color = MaterialTheme.colorScheme.background)
-            .padding(top = 16.dp)
-    ) { action ->
-        marketTabAction(action)
+    Column {
+        Text(
+            text = "Coin",
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(color = MaterialTheme.colorScheme.background)
+                .padding(vertical = 6.dp),
+            style = MaterialTheme.typography.titleMedium
+        )
+        MarketTab { action ->
+            marketTabAction(action)
+        }
     }
 }
 
