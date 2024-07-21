@@ -88,6 +88,23 @@ fun MarketTabItem(
     }
 }
 
+@Composable
+fun StickyMarketTab(marketTabAction: (MarketTabAction) -> Unit) {
+    Column {
+        Text(
+            text = "Coin",
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(color = MaterialTheme.colorScheme.background)
+                .padding(vertical = 6.dp),
+            style = MaterialTheme.typography.titleMedium
+        )
+        MarketTab { action ->
+            marketTabAction(action)
+        }
+    }
+}
+
 sealed interface MarketTabAction {
     data object Hot : MarketTabAction
     data object MarketCap : MarketTabAction

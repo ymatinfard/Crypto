@@ -47,6 +47,12 @@ android {
             isDebuggable = true
             versionNameSuffix = "-staging"
         }
+        create("benchmark") {
+            initWith(buildTypes.getByName("release"))
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("release")
+            isDebuggable = false
+        }
         release {
             isMinifyEnabled = true
             signingConfig = signingConfigs.getByName("release")

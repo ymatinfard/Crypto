@@ -15,6 +15,8 @@ toolsCore = "1.0.0-alpha09"
 hilt = "2.51.1"
 ksp = "2.0.0-1.0.21"
 junitJunit = "4.12"
+uiautomator = "2.3.0"
+benchmarkMacroJunit4 = "1.2.4"
 
 [libraries]
 accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanistPager" }
@@ -40,6 +42,8 @@ androidx-tools-core = { group = "androidx.privacysandbox.tools", name = "tools-c
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 junit-junit = { group = "junit", name = "junit", version.ref = "junitJunit" }
+androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
+androidx-benchmark-macro-junit4 = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "benchmarkMacroJunit4" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -47,5 +51,6 @@ jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = 
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt"}
+android-test = { id = "com.android.test", version.ref = "agp" }
 
 
