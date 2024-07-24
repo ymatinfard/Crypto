@@ -17,8 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.matin.youtech.crypto.domain.MarketListItem
-import com.matin.youtech.crypto.ui.theme.Green40
-import com.matin.youtech.crypto.ui.theme.Red45
+import com.matin.youtech.crypto.ui.theme.AdditionalColorScheme
+import com.matin.youtech.crypto.ui.theme.LocalAdditionalColors
 
 
 @Preview
@@ -55,9 +55,11 @@ fun MarketItemRow(item: MarketListItem = MarketListItem()) {
         Column(
             horizontalAlignment = Alignment.End
         ) {
+            val additionalColors = LocalAdditionalColors.current
+            val priceChangeColor = pickPriceChangeColor(item, additionalColors)
             Text(
                 text = item.priceChange,
-                color = pickPriceChangeColor(item.priceChange),
+                color = priceChangeColor,
                 style = MaterialTheme.typography.bodyLarge
             )
             Text(
@@ -69,5 +71,9 @@ fun MarketItemRow(item: MarketListItem = MarketListItem()) {
 }
 
 @Composable
-private fun pickPriceChangeColor(priceChange: String) =
-    if (priceChange.dropLast(1).toInt() >= 0) Green40 else Red45
+private fun pickPriceChangeColor(
+    item: MarketListItem,
+    additionalColors: AdditionalColorScheme
+) = if (item.priceChange.dropLast(1)
+        .toInt() >= 0
+) additionalColors.positiveRate else additionalColors.negativeRate
