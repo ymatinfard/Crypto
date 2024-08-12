@@ -12,25 +12,29 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.matin.youtech.crypto.ui.screen.MainScreenRoute
-import com.matin.youtech.crypto.ui.screen.MainScreenViewModel
+import com.matin.youtech.crypto.ui.screen.main.MainScreenRoute
+import com.matin.youtech.crypto.ui.screen.main.MainScreenViewModel
+import com.matin.youtech.crypto.ui.screen.portfolio.PortfolioScreenRoute
+import com.matin.youtech.crypto.ui.screen.portfolio.PortfolioScreenViewModel
 import com.matin.youtech.crypto.ui.theme.CryptoTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    private val portfolioViewModel: PortfolioScreenViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        val viewModel: MainScreenViewModel by viewModels()
+     //   val viewModel: MainScreenViewModel by viewModels()
 
         setContent {
+
             CryptoTheme {
+
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MainContent(modifier = Modifier
-                            .padding(innerPadding), viewModel
-                    )
+                    PortfolioScreenRoute(modifier = Modifier.padding(innerPadding), viewModel = portfolioViewModel)// viewModel = portfolioViewModel)
                 }
             }
         }

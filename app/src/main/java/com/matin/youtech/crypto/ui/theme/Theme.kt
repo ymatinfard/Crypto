@@ -38,19 +38,6 @@ private val LightColorScheme = lightColorScheme(
     error = errorLight,
 )
 
-@Immutable
-data class AdditionalColorScheme(
-    val positiveRate: Color = Color.Unspecified,
-    val negativeRate: Color = Color.Unspecified,
-)
-
-private val LightAdditionalColor =
-    AdditionalColorScheme(positiveRate = positiveRateLight, negativeRate = negativeRateLight)
-private val DarkAdditionalColor =
-    AdditionalColorScheme(positiveRate = positiveRateDark, negativeRate = negativeRateDark)
-
-val LocalAdditionalColors = staticCompositionLocalOf { AdditionalColorScheme() }
-
 @Composable
 fun ProvideColors(
     colorScheme: ColorScheme,
@@ -93,3 +80,16 @@ fun CryptoTheme(
         )
     }
 }
+
+@Immutable
+data class AdditionalColorScheme(
+    val positiveRate: Color = Color.Unspecified,
+    val negativeRate: Color = Color.Unspecified,
+)
+
+private val LightAdditionalColor =
+    AdditionalColorScheme(positiveRate = positiveRateLight, negativeRate = negativeRateLight)
+private val DarkAdditionalColor =
+    AdditionalColorScheme(positiveRate = positiveRateDark, negativeRate = negativeRateDark)
+
+val LocalAdditionalColors = staticCompositionLocalOf { AdditionalColorScheme() }

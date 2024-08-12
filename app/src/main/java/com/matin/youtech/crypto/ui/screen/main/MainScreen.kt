@@ -1,4 +1,4 @@
-package com.matin.youtech.crypto.ui.screen
+package com.matin.youtech.crypto.ui.screen.main
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background

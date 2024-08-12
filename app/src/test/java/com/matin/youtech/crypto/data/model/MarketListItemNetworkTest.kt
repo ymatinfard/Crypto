@@ -7,11 +7,11 @@ import org.junit.Assert.*
 import org.junit.Test
 import java.math.BigDecimal
 
-class MarketListItemEntityTest {
+class MarketListItemNetworkTest {
 
     @Test
     fun `Map MarketListItemEntity to MarketListItemDomain`() {
-        val marketListItemEntity = MarketListItemEntity(
+        val marketListItemNetwork = MarketListItemNetwork(
             coinName = "BTC",
             coinUrl = "https://github.com/spothq/cryptocurrency-icons/blob/master/32/color/btc.png",
             ticker = "123",
@@ -25,20 +25,20 @@ class MarketListItemEntityTest {
             priceChange = "3%",
             price = BigDecimal("123.12")
         )
-        assertEquals(marketListItemDomain, marketListItemEntity.toDomain())
+        assertEquals(marketListItemDomain, marketListItemNetwork.toDomain())
     }
 
     @Test
     fun `Map list of MarketListItemEntity to list of MarketListItemDomain`() {
         val marketListItemEntities = listOf(
-            MarketListItemEntity(
+            MarketListItemNetwork(
                 coinName = "BTC",
                 coinUrl = "https://github.com/spothq/cryptocurrency-icons/blob/master/32/color/btc.png",
                 ticker = "123",
                 priceChange = "3%",
                 price = "123.123"
             ),
-            MarketListItemEntity(
+            MarketListItemNetwork(
                 coinName = "DASH",
                 coinUrl = "https://github.com/spothq/cryptocurrency-icons/blob/master/32/color/dash.png",
                 ticker = "354",

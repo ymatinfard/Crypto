@@ -16,7 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.matin.youtech.crypto.R
-import com.matin.youtech.crypto.ui.screen.MainScreenIntent
+import com.matin.youtech.crypto.ui.screen.main.MainScreenIntent
 import com.matin.youtech.crypto.ui.theme.CryptoTheme
 
 @Composable

@@ -3,7 +3,7 @@ package com.matin.youtech.crypto.data.model
 import com.matin.youtech.crypto.domain.MarketListItem
 import java.math.BigDecimal
 
-data class MarketListItemEntity(
+data class MarketListItemNetwork(
     val coinName: String = "BTC",
     val coinUrl: String = "https://github.com/spothq/cryptocurrency-icons/blob/master/32/color/btc.png",
     val ticker: String = "123",

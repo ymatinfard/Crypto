@@ -1,8 +1,8 @@
-package com.matin.youtech.crypto.ui.screen
+package com.matin.youtech.crypto.ui.screen.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.matin.youtech.crypto.data.Repository
+import com.matin.youtech.crypto.data.MarketRepository
 import com.matin.youtech.crypto.domain.MarketListItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainScreenViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
+class MainScreenViewModel @Inject constructor(private val marketRepository: MarketRepository) : ViewModel() {
     var uiState = MutableStateFlow<MainScreenUiState>(MainScreenUiState.Loading)
         private set
 
@@ -20,7 +20,7 @@ class MainScreenViewModel @Inject constructor(private val repository: Repository
 
     private fun getMarketList() {
         viewModelScope.launch {
-            repository.getMarketList().collect {
+            marketRepository.getMarketList().collect {
                 println("getMarketList $it")
                 uiState.value = MainScreenUiState.Success(MainScreenState(it))
             }
