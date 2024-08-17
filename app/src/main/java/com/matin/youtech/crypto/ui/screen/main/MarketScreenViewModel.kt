@@ -10,8 +10,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainScreenViewModel @Inject constructor(private val marketRepository: MarketRepository) : ViewModel() {
-    var uiState = MutableStateFlow<MainScreenUiState>(MainScreenUiState.Loading)
+class MarketScreenViewModel @Inject constructor(private val marketRepository: MarketRepository) : ViewModel() {
+    var uiState = MutableStateFlow<MarketScreenUiState>(MarketScreenUiState.Loading)
         private set
 
     init {
@@ -22,7 +22,7 @@ class MainScreenViewModel @Inject constructor(private val marketRepository: Mark
         viewModelScope.launch {
             marketRepository.getMarketList().collect {
                 println("getMarketList $it")
-                uiState.value = MainScreenUiState.Success(MainScreenState(it))
+                uiState.value = MarketScreenUiState.Success(MainScreenState(it))
             }
         }
     }
@@ -42,10 +42,10 @@ class MainScreenViewModel @Inject constructor(private val marketRepository: Mark
     }
 }
 
-sealed class MainScreenUiState {
-    data object Loading : MainScreenUiState()
-    data class Success(val data: MainScreenState) : MainScreenUiState()
-    data class Error(val exception: Exception) : MainScreenUiState()
+sealed class MarketScreenUiState {
+    data object Loading : MarketScreenUiState()
+    data class Success(val data: MainScreenState) : MarketScreenUiState()
+    data class Error(val exception: Exception) : MarketScreenUiState()
 }
 
 data class MainScreenState(

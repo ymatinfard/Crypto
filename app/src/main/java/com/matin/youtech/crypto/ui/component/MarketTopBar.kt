@@ -15,13 +15,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun MainTopBar() {
+fun MarketTopBar() {
     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
         IconButton(onClick = { /*TODO*/ }) {
             Icon(
                 Icons.Filled.AddCircle,
                 tint = MaterialTheme.colorScheme.primary,
-
                 contentDescription = "chain"
             )
         }

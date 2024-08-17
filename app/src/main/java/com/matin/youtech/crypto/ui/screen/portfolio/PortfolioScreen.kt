@@ -14,7 +14,7 @@ import com.matin.youtech.crypto.data.Data
 import com.matin.youtech.crypto.domain.PortfolioItem
 
 @Composable
-fun PortfolioScreenRoute(modifier: Modifier, viewModel: PortfolioScreenViewModel) {
+fun PortfolioScreenRoute(viewModel: PortfolioScreenViewModel) {
     val uiState = viewModel.getPortfolio()
         .collectAsStateWithLifecycle(Data())
     PortfolioScreen(uiState)
