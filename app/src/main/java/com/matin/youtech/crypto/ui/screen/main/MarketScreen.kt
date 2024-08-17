@@ -10,23 +10,22 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.ui.component.BannerPager
 import com.matin.youtech.crypto.ui.component.CryptoLoadingWheel
-import com.matin.youtech.crypto.ui.component.MarketTopBar
 import com.matin.youtech.crypto.ui.component.MarketItemRow
 import com.matin.youtech.crypto.ui.component.MarketTabAction
+import com.matin.youtech.crypto.ui.component.MarketTopBar
 import com.matin.youtech.crypto.ui.component.StickyMarketTab
 import com.matin.youtech.crypto.ui.component.TotalBalance
-import com.matin.youtech.crypto.ui.theme.CryptoTheme
 
 @Composable
 fun MarketScreenRoute(viewModel: MarketScreenViewModel) {
@@ -71,20 +70,26 @@ fun MarketScreenContent(
     depositClick: () -> Unit,
     marketTabClick: (MarketTabAction) -> Unit
 ) {
-    Column(
-        modifier = Modifier
-            .padding(horizontal = 12.dp)
-    ) {
-        MarketTopBar()
-        LazyColumn(contentPadding = PaddingValues(vertical = 8.dp)) {
-            item {
-                MainContent(depositClick)
-            }
-            stickyHeader {
-                StickyMarketTab(marketTabClick)
-            }
-            items(uiState.marketList) {
-                MarketItemRow(it)
+    Scaffold { padding ->
+        Column(
+            modifier = Modifier
+                .padding(
+                    start = 12.dp,
+                    end = 12.dp,
+                    top = padding.calculateTopPadding(),
+                )
+        ) {
+            MarketTopBar()
+            LazyColumn(contentPadding = PaddingValues(vertical = 8.dp)) {
+                item {
+                    MainContent(depositClick)
+                }
+                stickyHeader {
+                    StickyMarketTab(marketTabClick)
+                }
+                items(uiState.marketList) {
+                    MarketItemRow(item = it)
+                }
             }
         }
     }

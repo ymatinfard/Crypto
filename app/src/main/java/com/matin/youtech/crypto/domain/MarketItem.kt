@@ -2,7 +2,7 @@ package com.matin.youtech.crypto.domain
 
 import java.math.BigDecimal
 
-data class PortfolioItem(
+data class MarketItem(
     val coinName: String = "",
     val coinUrl: String = "https",
     val ticker: String = "123",

@@ -3,7 +3,7 @@ package com.matin.youtech.crypto.ui.screen.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.matin.youtech.crypto.data.MarketRepository
-import com.matin.youtech.crypto.domain.MarketListItem
+import com.matin.youtech.crypto.domain.MarketItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -49,5 +49,5 @@ sealed class MarketScreenUiState {
 }
 
 data class MainScreenState(
-    val marketList: List<MarketListItem> = emptyList()
+    val marketList: List<MarketItem> = emptyList()
 )

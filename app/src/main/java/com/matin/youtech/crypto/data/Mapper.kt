@@ -1,5 +1,5 @@
 package com.matin.youtech.crypto.data
 
-import com.matin.youtech.crypto.data.model.MarketListItemNetwork
+import com.matin.youtech.crypto.data.model.MarketItemNetwork
 
-fun List<MarketListItemNetwork>.toDomain() = map { it.toDomain() }
+fun List<MarketItemNetwork>.toDomain() = map { it.toDomain() }

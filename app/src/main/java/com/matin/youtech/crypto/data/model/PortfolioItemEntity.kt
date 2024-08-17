@@ -1,6 +1,7 @@
 package com.matin.youtech.crypto.data.model
 
-import com.matin.youtech.crypto.domain.PortfolioItem
+import com.matin.youtech.crypto.domain.MarketItem
+import com.matin.youtech.crypto.domain.Portfolio
 import java.math.BigDecimal
 
 data class PortfolioItemEntity(
@@ -9,12 +10,20 @@ data class PortfolioItemEntity(
     val ticker: String = "123",
     val priceChange: String = "3%",
     val price: String = "123.123"
-) {
-    fun toDomain(): PortfolioItem = PortfolioItem(
-        coinName = coinName,
-        coinUrl = coinUrl,
-        ticker = ticker,
-        priceChange = priceChange,
-        price = BigDecimal(price).setScale(2, BigDecimal.ROUND_FLOOR)
+)
+
+fun List<PortfolioItemEntity>.toDomain(): Portfolio {
+    val items = this.map { item ->
+        MarketItem(
+            coinName = item.coinName,
+            coinUrl = item.coinUrl,
+            ticker = item.ticker,
+            priceChange = item.priceChange,
+            price = BigDecimal(item.price).setScale(2, BigDecimal.ROUND_FLOOR)
+        )
+    }
+    return Portfolio(
+        id = "000",
+        marketItems = items
     )
 }

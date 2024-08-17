@@ -1,17 +1,29 @@
 package com.matin.youtech.crypto.ui.screen.portfolio
 
 import android.util.Log
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.data.Data
-import com.matin.youtech.crypto.domain.PortfolioItem
+import com.matin.youtech.crypto.designsystem.ClickableTabs
+import com.matin.youtech.crypto.domain.Portfolio
+import com.matin.youtech.crypto.ui.component.MarketItemRow
 
 @Composable
 fun PortfolioScreenRoute(viewModel: PortfolioScreenViewModel) {
@@ -21,18 +33,11 @@ fun PortfolioScreenRoute(viewModel: PortfolioScreenViewModel) {
 }
 
 @Composable
-fun PortfolioScreen(uiState: State<Data<List<PortfolioItem>>>) {
+fun PortfolioScreen(uiState: State<Data<Portfolio>>) {
     Log.d("PortfolioScreen", "PortfolioScreen: $uiState")
     when {
         uiState.value.content != null -> {
-            Box(modifier = Modifier.fillMaxSize()) {
-                LazyColumn {
-                    items(uiState.value.content!!) {
-                        Text(text = it.coinName)
-                    }
-                }
-            }
-
+            Content(uiState.value.content!!)
         }
 
         uiState.value.loading -> {
@@ -44,3 +49,43 @@ fun PortfolioScreen(uiState: State<Data<List<PortfolioItem>>>) {
         }
     }
 }
+
+@Composable
+private fun Content(data: Portfolio) {
+    BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+        val height = maxHeight
+        val selectedTabIndex = remember {
+            mutableIntStateOf(0)
+        }
+
+        LazyColumn {
+            item {
+                Image(
+                    modifier = Modifier
+                        .height(height / 2)
+                        .fillMaxWidth(),
+                    painter = painterResource(id = R.drawable.portfolio_bg),
+                    contentScale = ContentScale.FillWidth,
+                    contentDescription = null
+                )
+
+                ClickableTabs(
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    selectedItem = selectedTabIndex.intValue,
+                    tabsList = PORTFOLIO_TAB_ITEMS
+                ) {
+                    selectedTabIndex.intValue = it
+                }
+            }
+
+            if (selectedTabIndex.intValue == PORTFOLIO_TAB_ITEM_INDEX) {
+                items(data.marketItems) {
+                    MarketItemRow(modifier = Modifier.padding(horizontal = 20.dp), it)
+                }
+            }
+        }
+    }
+}
+
+val PORTFOLIO_TAB_ITEMS = listOf("Portfolio", "Discover")
+val PORTFOLIO_TAB_ITEM_INDEX = 0

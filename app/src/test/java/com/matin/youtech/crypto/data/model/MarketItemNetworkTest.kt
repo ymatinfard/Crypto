@@ -1,44 +1,44 @@
 package com.matin.youtech.crypto.data.model
 
 import com.matin.youtech.crypto.data.toDomain
-import com.matin.youtech.crypto.domain.MarketListItem
+import com.matin.youtech.crypto.domain.MarketItem
 import org.junit.Assert.*
 
 import org.junit.Test
 import java.math.BigDecimal
 
-class MarketListItemNetworkTest {
+class MarketItemNetworkTest {
 
     @Test
     fun `Map MarketListItemEntity to MarketListItemDomain`() {
-        val marketListItemNetwork = MarketListItemNetwork(
+        val marketListItemNetwork = MarketItemNetwork(
             coinName = "BTC",
             coinUrl = "https://github.com/spothq/cryptocurrency-icons/blob/master/32/color/btc.png",
             ticker = "123",
             priceChange = "3%",
             price = "123.123"
         )
-        val marketListItemDomain = MarketListItem(
+        val marketItemDomain = MarketItem(
             coinName = "BTC",
             coinUrl = "https://github.com/spothq/cryptocurrency-icons/blob/master/32/color/btc.png",
             ticker = "123",
             priceChange = "3%",
             price = BigDecimal("123.12")
         )
-        assertEquals(marketListItemDomain, marketListItemNetwork.toDomain())
+        assertEquals(marketItemDomain, marketListItemNetwork.toDomain())
     }
 
     @Test
     fun `Map list of MarketListItemEntity to list of MarketListItemDomain`() {
         val marketListItemEntities = listOf(
-            MarketListItemNetwork(
+            MarketItemNetwork(
                 coinName = "BTC",
                 coinUrl = "https://github.com/spothq/cryptocurrency-icons/blob/master/32/color/btc.png",
                 ticker = "123",
                 priceChange = "3%",
                 price = "123.123"
             ),
-            MarketListItemNetwork(
+            MarketItemNetwork(
                 coinName = "DASH",
                 coinUrl = "https://github.com/spothq/cryptocurrency-icons/blob/master/32/color/dash.png",
                 ticker = "354",
@@ -47,15 +47,15 @@ class MarketListItemNetworkTest {
             )
         )
 
-        val marketListItemDomains = listOf(
-            MarketListItem(
+        val marketItemDomains = listOf(
+            MarketItem(
                 coinName = "BTC",
                 coinUrl = "https://github.com/spothq/cryptocurrency-icons/blob/master/32/color/btc.png",
                 ticker = "123",
                 priceChange = "3%",
                 price = BigDecimal("123.12")
             ),
-            MarketListItem(
+            MarketItem(
                 coinName = "DASH",
                 coinUrl = "https://github.com/spothq/cryptocurrency-icons/blob/master/32/color/dash.png",
                 ticker = "354",
@@ -64,6 +64,6 @@ class MarketListItemNetworkTest {
             )
         )
 
-        assertEquals(marketListItemDomains, marketListItemEntities.toDomain())
+        assertEquals(marketItemDomains, marketListItemEntities.toDomain())
     }
 }
