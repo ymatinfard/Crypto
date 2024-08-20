@@ -25,7 +25,7 @@ class RemoteDataSourceImpl @Inject constructor(private val scope: CoroutineScope
     }
 
     override suspend fun getPortfolio(): PortfolioNetwork {
-        delay(2000)
+        delay(500)
         return fakePortfolio()
     }
 }

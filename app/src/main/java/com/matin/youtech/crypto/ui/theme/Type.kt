@@ -28,10 +28,10 @@ val Typography = Typography(
         letterSpacing = 0.sp,
     ),
     headlineLarge = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize = 32.sp,
-        lineHeight = 40.sp,
-        letterSpacing = 0.sp,
+        fontWeight = FontWeight.Bold,
+        fontSize = 48.sp,
+        lineHeight = 60.sp,
+        letterSpacing = 2.sp,
     ),
     headlineMedium = TextStyle(
         fontWeight = FontWeight.Normal,
