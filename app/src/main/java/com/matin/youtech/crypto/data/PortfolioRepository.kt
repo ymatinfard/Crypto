@@ -11,6 +11,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
+import java.util.WeakHashMap
 import javax.inject.Inject
 
 interface PortfolioRepository {
@@ -25,14 +26,20 @@ class PortfolioRepositoryImpl @Inject constructor(
     private val dataFlowManagerFactory: DataFlowManagerFactory
 ) : PortfolioRepository {
 
+    private val memoryCache: WeakHashMap<String, Portfolio> = WeakHashMap()
     private val dataFlowManager =
         dataFlowManagerFactory.create<PortfolioParameter, Portfolio>(
-            fetchFromNetwork = { fetchPortfolioFromServer() })
+            fetchFromNetwork = { fetchPortfolioFromServer() },
+            fetchFromMemory = { params ->
+                memoryCache[params.id]
+            },
+            saveToMemory = { _, portfolio ->
+                memoryCache[portfolio.id] = portfolio
+            }
+        )
 
     override suspend fun fetchPortfolioFromServer(): Portfolio =
-            remoteDataSource.getPortfolio().toDomain().also {
-                Log.d("PortfolioRepositoryImpl", "fetchPortfolioFromServer: $it")
-        }
+        remoteDataSource.getPortfolio().toDomain()
 
     override suspend fun fetchPortfolioFromStorage() = withContext(Dispatchers.IO) {
         localDataSource.getPortfolio().toDomain()
