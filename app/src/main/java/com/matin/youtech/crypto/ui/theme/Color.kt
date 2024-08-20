@@ -23,3 +23,5 @@ val surfaceVariantDark = Color(0xFF1A1F3C)
 val onSurfaceDark = Color(0xFFEAE1D4)
 val negativeRateDark = Color(0xFFD50E0E)
 val positiveRateDark = Color(0xFF1B971B)
+
+val transparentBackground = Color(0x651A43D6)
