@@ -69,7 +69,8 @@ fun CryptoBottomNavigation(
             NavigationBar(
                 modifier = Modifier
                     .fillMaxWidth(),
-                containerColor = MaterialTheme.colorScheme.background
+                containerColor = MaterialTheme.colorScheme.background,
+                tonalElevation = 0.dp
             ) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
