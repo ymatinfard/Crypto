@@ -1,6 +1,6 @@
 package com.matin.youtech.crypto.data.model
 
-import com.matin.youtech.crypto.domain.Portfolio
+import com.matin.youtech.crypto.domain.model.Portfolio
 
 data class PortfolioNetwork(
     val id: String = "",

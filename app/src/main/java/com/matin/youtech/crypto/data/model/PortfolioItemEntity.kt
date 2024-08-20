@@ -1,7 +1,7 @@
 package com.matin.youtech.crypto.data.model
 
-import com.matin.youtech.crypto.domain.MarketItem
-import com.matin.youtech.crypto.domain.Portfolio
+import com.matin.youtech.crypto.domain.model.MarketItem
+import com.matin.youtech.crypto.domain.model.Portfolio
 import java.math.BigDecimal
 
 data class PortfolioItemEntity(

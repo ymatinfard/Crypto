@@ -1,4 +1,4 @@
-package com.matin.youtech.crypto.domain
+package com.matin.youtech.crypto.domain.model
 
 import java.math.BigDecimal
 
