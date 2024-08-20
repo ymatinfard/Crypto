@@ -1,6 +1,5 @@
 package com.matin.youtech.crypto.ui.screen.portfolio
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -18,35 +17,41 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.data.Data
 import com.matin.youtech.crypto.designsystem.ClickableTabs
 import com.matin.youtech.crypto.domain.Portfolio
+import com.matin.youtech.crypto.ui.component.CryptoLoadingWheel
 import com.matin.youtech.crypto.ui.component.MarketItemRow
 
 @Composable
 fun PortfolioScreenRoute(viewModel: PortfolioScreenViewModel) {
-    val uiState = viewModel.getPortfolio()
-        .collectAsStateWithLifecycle(Data())
+    val uiState = viewModel.getPortfolio().collectAsStateWithLifecycle(Data())
     PortfolioScreen(uiState)
 }
 
 @Composable
 fun PortfolioScreen(uiState: State<Data<Portfolio>>) {
-    Log.d("PortfolioScreen", "PortfolioScreen: $uiState")
     when {
         uiState.value.content != null -> {
             PortfolioScreenContent(uiState.value.content!!)
         }
 
         uiState.value.loading -> {
-            Text(text = "Please wait...")
+            Box(modifier = Modifier.fillMaxSize()) {
+                CryptoLoadingWheel(
+                    modifier = Modifier.align(Alignment.Center),
+                    contentDesc = stringResource(R.string.loading)
+                )
+            }
         }
 
         uiState.value.error != null -> {
