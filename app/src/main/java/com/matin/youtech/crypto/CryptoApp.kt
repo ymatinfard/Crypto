@@ -23,9 +23,10 @@ fun CryptoApp() {
         CryptoNavHost(modifier = Modifier.weight(1f), navController = navController)
         CryptoBottomNavigation(
             currentDestination = selectedDestination,
-            noNavigationBarClick = { selectedDest ->
-                selectedDestination = selectedDest
-                navController.navigate(selectedDest.route)
+            noNavigationBarClick = { clickedDestination ->
+                if (selectedDestination == clickedDestination) return@CryptoBottomNavigation
+                selectedDestination = clickedDestination
+                navController.navigate(clickedDestination.route)
             },
             bottomNavItems = TopLevelDestination.entries
         )
