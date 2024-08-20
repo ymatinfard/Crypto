@@ -27,6 +27,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -76,7 +77,7 @@ fun TabItem(isSelected: Boolean, text: String, modifier: Modifier, onClick: () -
         targetValue = if (isSelected) {
             MaterialTheme.colorScheme.onPrimary
         } else {
-            Color.Black
+            MaterialTheme.colorScheme.onSurfaceVariant
         },
         animationSpec = tween(easing = LinearEasing), label = ""
     )
@@ -88,34 +89,21 @@ fun TabItem(isSelected: Boolean, text: String, modifier: Modifier, onClick: () -
             MaterialTheme.colorScheme.inverseOnSurface,
         animationSpec = tween(durationMillis = 300, easing = LinearOutSlowInEasing), label = ""
     )
-    val border = if (isSelected)
-        BorderStroke(
-            1.dp,
-            MaterialTheme.colorScheme.background
-        )
-    else
-        BorderStroke(
-            0.dp,
-            Color.White
-        )
     val interactionSource = remember { MutableInteractionSource() }
     Box(
         modifier = modifier
             .fillMaxWidth(1f)
             .fillMaxHeight(1f)
             .background(background, RoundedCornerShape(70.dp))
-            .border(
-                border = border, RoundedCornerShape(70.dp)
-            )
             .clickable(
                 interactionSource = interactionSource,
                 indication = null
             ) {
-
                 onClick.invoke()
             }
-            .padding(vertical = 10.dp),
-        contentAlignment = Alignment.Center
+            .padding(vertical = 10.dp)
+            .clip(RoundedCornerShape(70.dp)),
+        contentAlignment = Alignment.Center,
     ) {
         Text(
             text = text,
