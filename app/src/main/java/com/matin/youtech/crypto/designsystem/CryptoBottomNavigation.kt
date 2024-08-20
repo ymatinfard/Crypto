@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -29,7 +30,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -100,14 +100,14 @@ fun CryptoBottomNavigation(
                 .offset(y = (-25).dp)
                 .size(animateSize.dp)
                 .rotate(animateRotate),
-            contentPadding = PaddingValues(0.dp)
-
+            contentPadding = PaddingValues(0.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.inverseSurface)
         ) {
             Icon(
                 painter = painterResource(id = if (showBottomSheet) R.drawable.ic_close else R.drawable.ic_trade),
                 contentDescription = null,
                 modifier = Modifier.rotate(if (showBottomSheet) 0f else -45f),
-                tint = Color.White
+                tint = MaterialTheme.colorScheme.surface
             )
 
         }

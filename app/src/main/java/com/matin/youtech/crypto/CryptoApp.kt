@@ -13,7 +13,7 @@ import com.matin.youtech.crypto.navigation.CryptoNavHost
 import com.matin.youtech.crypto.navigation.TopLevelDestination
 
 @Composable
-fun CryptoApp(modifier: Modifier) {
+fun CryptoApp() {
     val navController = rememberNavController()
     var selectedDestination by remember {
         mutableStateOf(TopLevelDestination.Market)

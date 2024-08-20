@@ -1,4 +1,4 @@
-package com.matin.youtech.crypto.ui.screen.main
+package com.matin.youtech.crypto.ui.screen.market
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

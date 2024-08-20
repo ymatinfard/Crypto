@@ -1,10 +1,10 @@
-package com.matin.youtech.crypto.ui.screen.main.navigation
+package com.matin.youtech.crypto.ui.screen.market.navigation
 
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.matin.youtech.crypto.ui.screen.main.MarketScreenRoute
-import com.matin.youtech.crypto.ui.screen.main.MarketScreenViewModel
+import com.matin.youtech.crypto.ui.screen.market.MarketScreenRoute
+import com.matin.youtech.crypto.ui.screen.market.MarketScreenViewModel
 
 const val MARKET_ROUTE = "market"
 
