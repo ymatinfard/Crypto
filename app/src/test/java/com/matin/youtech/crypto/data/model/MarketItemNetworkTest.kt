@@ -1,7 +1,7 @@
 package com.matin.youtech.crypto.data.model
 
 import com.matin.youtech.crypto.data.toDomain
-import com.matin.youtech.crypto.domain.MarketItem
+import com.matin.youtech.crypto.domain.model.MarketItem
 import org.junit.Assert.*
 
 import org.junit.Test

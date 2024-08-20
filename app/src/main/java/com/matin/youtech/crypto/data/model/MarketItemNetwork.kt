@@ -1,6 +1,6 @@
 package com.matin.youtech.crypto.data.model
 
-import com.matin.youtech.crypto.domain.MarketItem
+import com.matin.youtech.crypto.domain.model.MarketItem
 import java.math.BigDecimal
 
 data class MarketItemNetwork(
