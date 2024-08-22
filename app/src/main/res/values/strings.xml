@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Crypto</string>
+    <string name="new_user_zone">New User Zone</string>
+    <string name="invite_your_friend_to_get_40">invite your friend to get 40$</string>
+    <string name="invitation_reward_msg">Unlock 100 USDT welcome rewards, Invite your friend to get 40$</string>
+    <string name="loading">Loading...</string>
+    <string name="deposit">Deposit</string>
+    <string name="fake_balance">$10,789.12</string>
+    <string name="total_balance">Total Balance</string>
+    <string name="market">Market</string>
+    <string name="portfolio">Portfolio\n</string>
 </resources>
