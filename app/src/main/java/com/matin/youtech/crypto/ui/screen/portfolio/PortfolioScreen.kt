@@ -2,8 +2,6 @@ package com.matin.youtech.crypto.ui.screen.portfolio
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.gestures.animateScrollBy
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -14,23 +12,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -39,17 +29,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.data.Data
-import com.matin.youtech.crypto.designsystem.ClickableTabs
+import com.matin.youtech.crypto.ui.component.ClickableTabs
 import com.matin.youtech.crypto.domain.model.Brand
 import com.matin.youtech.crypto.domain.model.Portfolio
+import com.matin.youtech.crypto.ui.component.CircularAutoScrollList
 import com.matin.youtech.crypto.ui.component.CryptoLoadingWheel
 import com.matin.youtech.crypto.ui.component.MarketItemRow
 import com.matin.youtech.crypto.ui.theme.transparentBackground
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @Composable
 fun PortfolioScreenRoute(viewModel: PortfolioScreenViewModel) {
@@ -155,63 +145,6 @@ fun TopContent(modifier: Modifier = Modifier) {
             colors = ButtonDefaults.buttonColors(containerColor = transparentBackground)
         ) {
             Text(text = "Get started")
-        }
-    }
-}
-
-@Preview
-@Composable
-fun CircularAutoScrollList(modifier: Modifier = Modifier, list: List<Brand> = brandList) {
-    val coroutineScope = rememberCoroutineScope()
-    val lazyListState = rememberLazyListState()
-    var autoScrollEnabled by remember { mutableStateOf(true) }
-
-    LaunchedEffect(Unit) {
-        // Virtual index to scroll to left and right infinitive
-        val middle = Int.MAX_VALUE / 2
-        lazyListState.scrollToItem(middle)
-    }
-
-    // Detect when the user is scrolling manually
-    LaunchedEffect(lazyListState.isScrollInProgress) {
-        if (lazyListState.isScrollInProgress) {
-            autoScrollEnabled = false
-        } else {
-            delay(1000) // Allow some idle time before re-enabling auto-scroll
-            autoScrollEnabled = true
-        }
-    }
-
-    LaunchedEffect(autoScrollEnabled) {
-        while (autoScrollEnabled) {
-            if (!lazyListState.isScrollInProgress) {
-                delay(500)
-                coroutineScope.launch {
-                    lazyListState.animateScrollBy(40f)
-                }
-            }
-        }
-    }
-
-    LazyRow(
-        state = lazyListState,
-        modifier = modifier
-            .fillMaxWidth()
-            .height(60.dp)
-    ) {
-        items(Int.MAX_VALUE) { index ->
-            // To enable circular scrolling
-            val boundedIndex = index % brandList.size
-            Image(
-                modifier = Modifier
-                    .padding(horizontal = 10.dp)
-                    .border(
-                        width = 2.dp, color = MaterialTheme.colorScheme.outlineVariant, CircleShape
-                    ),
-                contentScale = ContentScale.Inside,
-                painter = painterResource(id = list[boundedIndex].image),
-                contentDescription = null
-            )
         }
     }
 }
