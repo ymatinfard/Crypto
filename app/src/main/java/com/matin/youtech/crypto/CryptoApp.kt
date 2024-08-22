@@ -8,7 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.matin.youtech.crypto.designsystem.CryptoBottomNavigation
+import com.matin.youtech.crypto.ui.component.CryptoBottomNavigation
 import com.matin.youtech.crypto.navigation.CryptoNavHost
 import com.matin.youtech.crypto.navigation.TopLevelDestination
 
