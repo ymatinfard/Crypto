@@ -25,7 +25,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.matin.youtech.crypto.R
-import com.matin.youtech.crypto.ui.theme.CryptoTheme
+import com.matin.youtech.crypto.designsystem.theme.CryptoTheme
 
 
 @OptIn(ExperimentalFoundationApi::class)

@@ -1,4 +1,4 @@
-package com.matin.youtech.crypto.ui.theme
+package com.matin.youtech.crypto.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 

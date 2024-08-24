@@ -17,7 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.ui.screen.market.MainScreenIntent
-import com.matin.youtech.crypto.ui.theme.CryptoTheme
+import com.matin.youtech.crypto.designsystem.theme.CryptoTheme
 
 @Composable
 fun TotalBalance(modifier: Modifier, depositClick: (MainScreenIntent) -> Unit) {

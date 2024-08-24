@@ -1,4 +1,4 @@
-package com.matin.youtech.crypto.ui.theme
+package com.matin.youtech.crypto.designsystem.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

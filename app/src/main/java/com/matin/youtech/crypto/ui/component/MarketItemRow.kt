@@ -17,8 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.matin.youtech.crypto.domain.model.MarketItem
-import com.matin.youtech.crypto.ui.theme.AdditionalColorScheme
-import com.matin.youtech.crypto.ui.theme.LocalAdditionalColors
+import com.matin.youtech.crypto.designsystem.theme.AdditionalColorScheme
+import com.matin.youtech.crypto.designsystem.theme.LocalAdditionalColors
 
 
 @Preview

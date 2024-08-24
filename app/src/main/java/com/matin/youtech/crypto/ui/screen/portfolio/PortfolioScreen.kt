@@ -39,7 +39,7 @@ import com.matin.youtech.crypto.domain.model.Portfolio
 import com.matin.youtech.crypto.ui.component.CircularAutoScrollList
 import com.matin.youtech.crypto.ui.component.CryptoLoadingWheel
 import com.matin.youtech.crypto.ui.component.MarketItemRow
-import com.matin.youtech.crypto.ui.theme.transparentBackground
+import com.matin.youtech.crypto.designsystem.theme.transparentBackground
 
 @Composable
 fun PortfolioScreenRoute(viewModel: PortfolioScreenViewModel) {

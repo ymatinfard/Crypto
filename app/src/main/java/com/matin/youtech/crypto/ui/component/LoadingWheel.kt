@@ -31,7 +31,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
-import com.matin.youtech.crypto.ui.theme.CryptoTheme
+import com.matin.youtech.crypto.designsystem.theme.CryptoTheme
 import kotlinx.coroutines.launch
 
 @Composable
