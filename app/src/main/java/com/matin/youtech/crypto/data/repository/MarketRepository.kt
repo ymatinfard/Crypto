@@ -1,4 +1,4 @@
-package com.matin.youtech.crypto.data
+package com.matin.youtech.crypto.data.repository
 
 import com.matin.youtech.crypto.data.remote.RemoteDataSource
 import com.matin.youtech.crypto.domain.model.MarketItem

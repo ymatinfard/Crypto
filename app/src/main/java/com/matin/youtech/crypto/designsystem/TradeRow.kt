@@ -27,15 +27,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.matin.youtech.crypto.R
-import com.matin.youtech.crypto.domain.model.TradeItem
-import java.math.BigDecimal
+import com.matin.youtech.crypto.data.model.ComponentType
+import com.matin.youtech.crypto.data.model.TradeItemNetwork
 
 
 @Composable
 fun TradeRow(
     modifier: Modifier = Modifier,
     title: String? = null,
-    list: List<TradeItem>
+    list: List<TradeItemNetwork>
 ) {
     Column {
         RowTitle(title = title)
@@ -51,7 +51,15 @@ fun TradeRow(
 }
 
 @Composable
-fun TradeRowItem(item: TradeItem = TradeItem("BTC", "icon_url", BigDecimal("345.123"), "1.2%")) {
+fun TradeRowItem(
+    item: TradeItemNetwork = TradeItemNetwork(
+        componentType = ComponentType.TradeRowItemComponent,
+        coinName = "BTC",
+        iconUrl = "icon_url",
+        price = "345.123",
+        change = "1.2%"
+    )
+) {
     Card(
         shape = RoundedCornerShape(8.dp),
         modifier = Modifier.width(120.dp),

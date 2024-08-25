@@ -1,9 +1,9 @@
 package com.matin.youtech.crypto.di
 
-import com.matin.youtech.crypto.data.MarketRepository
-import com.matin.youtech.crypto.data.MarketRepositoryImpl
-import com.matin.youtech.crypto.data.PortfolioRepository
-import com.matin.youtech.crypto.data.PortfolioRepositoryImpl
+import com.matin.youtech.crypto.data.repository.MarketRepository
+import com.matin.youtech.crypto.data.repository.MarketRepositoryImpl
+import com.matin.youtech.crypto.data.repository.PortfolioRepository
+import com.matin.youtech.crypto.data.repository.PortfolioRepositoryImpl
 import com.matin.youtech.crypto.data.local.LocalDataSource
 import com.matin.youtech.crypto.data.local.LocalDataSourceImpl
 import com.matin.youtech.crypto.data.remote.RemoteDataSource

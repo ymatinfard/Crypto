@@ -1,4 +1,4 @@
-package com.matin.youtech.crypto.data
+package com.matin.youtech.crypto.data.repository
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*

@@ -2,7 +2,7 @@ package com.matin.youtech.crypto.ui.screen.portfolio
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.matin.youtech.crypto.data.PortfolioRepository
+import com.matin.youtech.crypto.data.repository.PortfolioRepository
 import com.matin.youtech.crypto.domain.PortfolioParameter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
