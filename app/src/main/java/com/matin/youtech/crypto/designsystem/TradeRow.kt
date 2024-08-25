@@ -1,7 +1,9 @@
 package com.matin.youtech.crypto.designsystem
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,8 +22,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.domain.model.TradeItem
 import java.math.BigDecimal
@@ -30,14 +34,18 @@ import java.math.BigDecimal
 @Composable
 fun TradeRow(
     modifier: Modifier = Modifier,
+    title: String? = null,
     list: List<TradeItem>
 ) {
-    LazyRow (
-        modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(6.dp)
-    ) {
-        items(list) {
-            TradeRowItem(item = it)
+    Column {
+        RowTitle(title = title)
+        LazyRow(
+            modifier = modifier,
+            horizontalArrangement = Arrangement.spacedBy(6.dp)
+        ) {
+            items(list) {
+                TradeRowItem(item = it)
+            }
         }
     }
 }
@@ -76,6 +84,26 @@ fun TradeRowItem(item: TradeItem = TradeItem("BTC", "icon_url", BigDecimal("345.
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.outline
                 )
+            }
+        }
+    }
+}
+
+@Composable
+fun RowTitle(title: String?, isPro: Boolean = true) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        androidx.compose.material3.Text(text = title ?: "")
+        if (isPro) {
+            Box(
+                modifier = Modifier
+                    .padding(start = 4.dp)
+                    .clip(RoundedCornerShape(18.dp))
+                    .background(MaterialTheme.colorScheme.primary)
+                    .padding(horizontal = 2.dp)
+
+            )
+            {
+                androidx.compose.material3.Text("Pro", fontSize = 10.sp)
             }
         }
     }
