@@ -20,11 +20,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
+import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.domain.model.Brand
 import com.matin.youtech.crypto.ui.screen.portfolio.brandList
 import kotlinx.coroutines.delay
@@ -81,7 +84,10 @@ fun CircularAutoScrollList(
                         width = 2.dp, color = MaterialTheme.colorScheme.outlineVariant, CircleShape
                     ),
                 contentScale = ContentScale.Inside,
-                painter = rememberAsyncImagePainter(model = list[boundedIndex].image),
+                painter = rememberAsyncImagePainter(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(list[boundedIndex].image).placeholder(R.drawable.ic_google).build()
+                ),
                 contentDescription = null
             )
         }
