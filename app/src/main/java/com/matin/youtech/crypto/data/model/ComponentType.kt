@@ -6,5 +6,6 @@ import kotlinx.serialization.Serializable
 enum class ComponentType {
     BannerComponent,
     TradeRowComponent,
-    TradeRowItemComponent
+    TradeRowItemComponent,
+    TradeBotComponent,
 }
