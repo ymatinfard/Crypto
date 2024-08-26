@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 enum class ComponentType {
-    BrandComponent,
+    BannerComponent,
     TradeRowComponent,
     TradeRowItemComponent
 }

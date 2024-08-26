@@ -32,13 +32,14 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.matin.youtech.crypto.R
+import com.matin.youtech.crypto.domain.model.Banner
 import kotlin.math.absoluteValue
 
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Banner(title: String = "Banner", description: List<String> = listOf("Test1", "Test2"), iconUrl: String = "") {
-    val state = rememberPagerState(pageCount = { description.size })
+fun Banner(banner: Banner) {
+    val state = rememberPagerState(pageCount = { banner.description.size })
 
     Column(modifier = Modifier.padding(vertical = 8.dp)) {
         Divider(
@@ -66,15 +67,15 @@ fun Banner(title: String = "Banner", description: List<String> = listOf("Test1",
                         .padding(end = 4.dp),
                     text = buildAnnotatedString {
                         pushStyle(SpanStyle(color = MaterialTheme.colorScheme.tertiary))
-                        append(title)
+                        append(banner.title)
                         pop()
                         appendLine()
                         pushStyle(SpanStyle(fontWeight = FontWeight.Bold))
-                        append(description[page])
+                        append(banner.description[page])
                     })
                 Image(
                     modifier = Modifier.size(42.dp),
-                    painter = rememberAsyncImagePainter(model = iconUrl),
+                    painter = rememberAsyncImagePainter(model = banner.iconUrl),
                     contentDescription = stringResource(R.string.invite_your_friend_to_get_40)
                 )
             }
