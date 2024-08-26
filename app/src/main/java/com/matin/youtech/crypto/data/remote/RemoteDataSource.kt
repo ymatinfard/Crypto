@@ -1,6 +1,6 @@
 package com.matin.youtech.crypto.data.remote
 
-import com.matin.youtech.crypto.data.model.BrandNetwork
+import com.matin.youtech.crypto.data.model.BannerNetwork
 import com.matin.youtech.crypto.data.model.ComponentNetwork
 import com.matin.youtech.crypto.data.model.MarketItemNetwork
 import com.matin.youtech.crypto.data.model.PortfolioNetwork
@@ -41,7 +41,7 @@ class RemoteDataSourceImpl @Inject constructor(private val scope: CoroutineScope
         val screenJsonString = """{
          "title": "Discovery",
          "components": [
-            {"type": "BrandComponent", "name": "BTC", "image": "https://example.com/btc.png"},
+            {"type": "BannerComponent", "title": "Banner title goes here", "description": ["Description line 1", "Description line 2"], "iconUrl": "https://example_ui.com/icon.png"},
             {"type": "TradeRowComponent", "title": "Top Gainers", "children": [
             {"coinName": "BTC","iconUrl": "https://example.com/btc.png","price": "345.123","change": "1.2%"},
             {"coinName": "ETH", "iconUrl": "https://example.com/eth.png", "price": "234.567", "change": "0.5%"},
@@ -54,7 +54,7 @@ class RemoteDataSourceImpl @Inject constructor(private val scope: CoroutineScope
             ignoreUnknownKeys = true
             serializersModule = SerializersModule {
                 polymorphic(ComponentNetwork::class) {
-                    subclass(BrandNetwork::class, BrandNetwork.serializer())
+                    subclass(BannerNetwork::class, BannerNetwork.serializer())
                     subclass(TradeRowNetwork::class, TradeRowNetwork.serializer())
                 }
             }
