@@ -9,7 +9,8 @@ fun pickPriceChangeColor(
     priceChange: String,
 ): Color {
     val additionalColors = LocalAdditionalColors.current
-    return if (priceChange.dropLast(1).toFloat() >= 0) additionalColors.positiveRate else additionalColors.negativeRate
+    val parsedValue = priceChange.dropLast(1).toFloatOrNull() ?: return Color.Gray
+    return if (parsedValue >= 0) additionalColors.positiveRate else additionalColors.negativeRate
 }
 
 fun String.addPriceChangeSign() = if (this.dropLast(1).toFloat() > 0) "+${this}%" else "-${this}"
