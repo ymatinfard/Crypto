@@ -1,11 +1,11 @@
 package com.matin.youtech.crypto.data.model
 
 import com.matin.youtech.crypto.data.toDomain
-import com.matin.youtech.crypto.domain.model.Brand
+import com.matin.youtech.crypto.domain.model.Banner
 import com.matin.youtech.crypto.domain.model.Screen
 import com.matin.youtech.crypto.domain.model.TradeItem
 import com.matin.youtech.crypto.domain.model.TradeRow
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class ScreenNetworkTest {
@@ -14,9 +14,11 @@ class ScreenNetworkTest {
         val screenNetwork = ScreenNetwork(
             title = "Test Screen",
             components = listOf(
-                BrandNetwork(
-                    name = "Brand 1",
-                    image = "http://example_url.com"
+                BannerNetwork(
+                    componentType = ComponentType.BannerComponent,
+                    title = "Banner",
+                    description = listOf("Test1", "Test2"),
+                    iconUrl = "http://example_url.com"
                 ),
                 TradeRowNetwork(
                     title = "Trade Row",
@@ -36,7 +38,11 @@ class ScreenNetworkTest {
         val expected = Screen(
             title = "Test Screen",
             components = listOf(
-                Brand(name = "Brand 1", image = "http://example_url.com"),
+                Banner(
+                    title = "Banner",
+                    description = listOf("Test1", "Test2"),
+                    iconUrl = "http://example_url.com"
+                ),
                 TradeRow(
                     title = "Trade Row",
                     children = listOf(
