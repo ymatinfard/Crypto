@@ -55,11 +55,9 @@ fun MarketItemRow(modifier: Modifier = Modifier, item: MarketItem = MarketItem()
         Column(
             horizontalAlignment = Alignment.End
         ) {
-            val priceChangeColor =
-                pickPriceChangeColor(item.priceChange.dropLast(1))
             Text(
                 text = item.priceChange.addPriceChangeSign(),
-                color = priceChangeColor,
+                color = pickPriceChangeColor(item.priceChange),
                 style = MaterialTheme.typography.bodyLarge
             )
             Text(

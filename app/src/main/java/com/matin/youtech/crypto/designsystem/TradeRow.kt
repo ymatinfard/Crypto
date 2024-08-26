@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,13 +36,15 @@ import com.matin.youtech.crypto.domain.model.TradeRow
 fun TradeRow(
     tradeRow: TradeRow
 ) {
+    val screenWith = LocalConfiguration.current.screenWidthDp.dp
     Column {
         RowTitle(title = tradeRow.title)
+        Spacer(modifier = Modifier.height(6.dp))
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(6.dp)
         ) {
             items(tradeRow.children) {
-                TradeRowItem(item = it)
+                TradeRowItem(modifier = Modifier.width(screenWith / 2 - 12.dp), item = it)
             }
         }
     }
@@ -49,6 +52,7 @@ fun TradeRow(
 
 @Composable
 fun TradeRowItem(
+    modifier: Modifier = Modifier,
     item: TradeItem = TradeItem(
         coinName = "BTC",
         iconUrl = "icon_url",
@@ -57,8 +61,8 @@ fun TradeRowItem(
     )
 ) {
     Card(
+        modifier = modifier,
         shape = RoundedCornerShape(8.dp),
-        modifier = Modifier.width(120.dp),
         border = BorderStroke(width = 2.dp, color = MaterialTheme.colorScheme.outlineVariant)
     ) {
         Column(modifier = Modifier.padding(6.dp)) {
@@ -75,9 +79,7 @@ fun TradeRowItem(
                     contentDescription = null
                 )
             }
-
-            Spacer(modifier = Modifier.height(12.dp))
-
+            Spacer(modifier = Modifier.height(20.dp))
             Column {
                 Text(
                     text = item.change.addPriceChangeSign(),
@@ -103,11 +105,9 @@ fun RowTitle(title: String?, isPro: Boolean = true) {
                     .padding(start = 4.dp)
                     .clip(RoundedCornerShape(18.dp))
                     .background(MaterialTheme.colorScheme.primary)
-                    .padding(horizontal = 2.dp)
-
             )
             {
-                androidx.compose.material3.Text("Pro", fontSize = 10.sp)
+                Text("Pro", fontSize = 10.sp, modifier = Modifier.padding(horizontal = 4.dp))
             }
         }
     }

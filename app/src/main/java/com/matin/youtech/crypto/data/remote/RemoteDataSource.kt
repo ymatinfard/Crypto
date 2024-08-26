@@ -43,9 +43,9 @@ class RemoteDataSourceImpl @Inject constructor(private val scope: CoroutineScope
          "components": [
             {"type": "BannerComponent", "title": "Banner title goes here", "description": ["Description line 1", "Description line 2"], "iconUrl": "https://example_ui.com/icon.png"},
             {"type": "TradeRowComponent", "title": "Top Gainers", "children": [
-            {"coinName": "BTC","iconUrl": "https://example.com/btc.png","price": "345.123","change": "1.2%"},
-            {"coinName": "ETH", "iconUrl": "https://example.com/eth.png", "price": "234.567", "change": "0.5%"},
-            {"coinName": "LTC", "iconUrl": "https://example.com/ltc.png", "price": "123.456", "change": "-0.8%"}
+            {"coinName": "BTC","iconUrl": "https://example.com/btc.png","price": "345.123","change": "1.2"},
+            {"coinName": "ETH", "iconUrl": "https://example.com/eth.png", "price": "234.567", "change": "0.5"},
+            {"coinName": "LTC", "iconUrl": "https://example.com/ltc.png", "price": "123.456", "change": "-0.8"}
             ]}
             ]
         }"""
