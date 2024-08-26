@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.designsystem.Banner
+import com.matin.youtech.crypto.domain.model.Banner
 import com.matin.youtech.crypto.ui.component.CryptoLoadingWheel
 import com.matin.youtech.crypto.ui.component.MarketItemRow
 import com.matin.youtech.crypto.ui.component.MarketTabAction
@@ -70,13 +71,11 @@ fun MarketScreenContent(
     depositClick: () -> Unit,
     marketTabClick: (MarketTabAction) -> Unit
 ) {
-    Scaffold { padding ->
         Column(
             modifier = Modifier
                 .padding(
                     start = 12.dp,
                     end = 12.dp,
-                    top = padding.calculateTopPadding(),
                 )
         ) {
             MarketTopBar()
@@ -92,14 +91,13 @@ fun MarketScreenContent(
                 }
             }
         }
-    }
 }
 
 @Composable
 private fun MainContent(depositClick: () -> Unit) {
     TotalBalance(modifier = Modifier.padding(vertical = 8.dp)) { depositClick() }
     Spacer(modifier = Modifier.height(16.dp))
-    Banner()
+    Banner(banner = Banner(title = "Banner", description = listOf(stringResource(id = R.string.invite_your_friend_to_get_40)), iconUrl = ""))
 }
 
 interface MainScreenIntent {

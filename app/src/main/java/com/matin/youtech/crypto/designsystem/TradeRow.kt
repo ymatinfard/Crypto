@@ -27,23 +27,20 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.matin.youtech.crypto.R
-import com.matin.youtech.crypto.data.model.ComponentType
-import com.matin.youtech.crypto.data.model.TradeItemNetwork
+import com.matin.youtech.crypto.domain.model.TradeItem
+import com.matin.youtech.crypto.domain.model.TradeRow
 
 
 @Composable
 fun TradeRow(
-    modifier: Modifier = Modifier,
-    title: String? = null,
-    list: List<TradeItemNetwork>
+    tradeRow: TradeRow
 ) {
     Column {
-        RowTitle(title = title)
+        RowTitle(title = tradeRow.title)
         LazyRow(
-            modifier = modifier,
             horizontalArrangement = Arrangement.spacedBy(6.dp)
         ) {
-            items(list) {
+            items(tradeRow.children) {
                 TradeRowItem(item = it)
             }
         }
@@ -52,8 +49,7 @@ fun TradeRow(
 
 @Composable
 fun TradeRowItem(
-    item: TradeItemNetwork = TradeItemNetwork(
-        componentType = ComponentType.TradeRowItemComponent,
+    item: TradeItem = TradeItem(
         coinName = "BTC",
         iconUrl = "icon_url",
         price = "345.123",
