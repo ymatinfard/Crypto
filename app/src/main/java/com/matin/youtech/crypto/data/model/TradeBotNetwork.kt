@@ -2,8 +2,10 @@ package com.matin.youtech.crypto.data.model
 
 import com.matin.youtech.crypto.domain.model.Component
 import com.matin.youtech.crypto.domain.model.TradeBot
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+@SerialName("TradeBotComponent")
 @Serializable
 data class TradeBotNetwork(
     override val componentType: ComponentType = ComponentType.TradeBotComponent,
