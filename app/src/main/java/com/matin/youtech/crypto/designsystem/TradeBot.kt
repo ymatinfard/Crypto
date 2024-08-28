@@ -7,8 +7,10 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -124,7 +126,11 @@ fun TradeBot(
                         horizontalArrangement = Arrangement.End,
 
                         ) {
-                        Button(onClick = { /*TODO*/ }) {
+                        Button(
+                            onClick = { /*TODO*/ },
+                            modifier = Modifier.height(32.dp),
+                            contentPadding = PaddingValues(horizontal = 18.dp)
+                        ) {
                             Text(text = "Create")
                         }
                     }
@@ -141,8 +147,9 @@ private fun BotKeyValue(key: String = "Copies", value: String = "42") {
         Text(
             text = key,
             color = MaterialTheme.colorScheme.outline,
-            modifier = Modifier.padding(end = 6.dp)
+            modifier = Modifier.padding(end = 6.dp),
+            style = MaterialTheme.typography.labelMedium
         )
-        Text(text = value)
+        Text(text = value, style = MaterialTheme.typography.labelMedium)
     }
 }

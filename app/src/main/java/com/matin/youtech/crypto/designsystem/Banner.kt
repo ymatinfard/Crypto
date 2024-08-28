@@ -45,7 +45,7 @@ fun Banner(banner: Banner) {
         Divider(
             modifier = Modifier
                 .fillMaxWidth()
-                .width(2.dp), color = MaterialTheme.colorScheme.surfaceVariant
+                .width(1.dp), color = MaterialTheme.colorScheme.outlineVariant
         )
 
         HorizontalPager(
@@ -94,7 +94,7 @@ fun Banner(banner: Banner) {
         Divider(
             modifier = Modifier
                 .fillMaxWidth()
-                .width(2.dp), color = MaterialTheme.colorScheme.surfaceVariant
+                .width(1.dp), color = MaterialTheme.colorScheme.outlineVariant
         )
     }
 }
