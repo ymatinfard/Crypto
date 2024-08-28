@@ -21,7 +21,6 @@ class MarketScreenViewModel @Inject constructor(private val marketRepository: Ma
     private fun getMarketList() {
         viewModelScope.launch {
             marketRepository.getMarketList().collect {
-                println("getMarketList $it")
                 uiState.value = MarketScreenUiState.Success(MainScreenState(it))
             }
         }

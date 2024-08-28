@@ -1,11 +1,9 @@
 package com.matin.youtech.crypto.sdui
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import com.matin.youtech.crypto.designsystem.Banner
 import com.matin.youtech.crypto.designsystem.LineSpace
 import com.matin.youtech.crypto.designsystem.RowTitle
@@ -24,9 +22,7 @@ object UIRenderer {
     @Composable
     fun render(screen: Screen) {
         LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 6.dp)
+            modifier = Modifier.fillMaxSize()
         ) {
             item {
                 screen.components.forEach { component ->

@@ -17,7 +17,7 @@ import com.matin.youtech.crypto.domain.model.RowTitle
 
 @Composable
 fun RowTitle(rowTitle: RowTitle) {
-    Row(modifier = Modifier.padding(vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
+    Row(modifier = Modifier.padding(vertical = 12.dp, horizontal = SCREEN_SIDE_PADDING.dp), verticalAlignment = Alignment.CenterVertically) {
         Text(text = rowTitle.title ?: "", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurface)
         if (rowTitle.badge != null) {
             Box(

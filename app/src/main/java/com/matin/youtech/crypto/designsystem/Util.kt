@@ -14,3 +14,5 @@ fun pickPriceChangeColor(
 }
 
 fun String.addPriceChangeSign() = if (this.toFloat() > 0) "+${this}%" else "-${this}%"
+
+const val SCREEN_SIDE_PADDING = 16

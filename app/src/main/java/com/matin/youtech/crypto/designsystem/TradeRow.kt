@@ -35,12 +35,17 @@ fun TradeRow(
     tradeRow: TradeRow
 ) {
     val screenWith = LocalConfiguration.current.screenWidthDp.dp
+    val itemPadding = 6.dp
     Column {
         LazyRow(
-            horizontalArrangement = Arrangement.spacedBy(6.dp)
+            horizontalArrangement = Arrangement.spacedBy(itemPadding),
+            modifier = Modifier.padding(start = SCREEN_SIDE_PADDING.dp)
         ) {
             items(tradeRow.children) {
-                TradeRowItem(modifier = Modifier.width(screenWith / 2 - 12.dp), item = it)
+                TradeRowItem(
+                    modifier = Modifier.width(screenWith / 2 - (itemPadding * 2) - SCREEN_SIDE_PADDING.dp),
+                    item = it
+                )
             }
         }
     }
@@ -58,7 +63,7 @@ fun TradeRowItem(
 ) {
     Card(
         modifier = modifier,
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(12.dp),
         border = BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.outlineVariant),
         colors = CardDefaults.cardColors(containerColor = Color.Transparent)
     ) {
