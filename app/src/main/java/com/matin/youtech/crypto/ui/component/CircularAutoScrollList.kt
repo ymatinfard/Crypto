@@ -86,7 +86,8 @@ fun CircularAutoScrollList(
                 contentScale = ContentScale.Inside,
                 painter = rememberAsyncImagePainter(
                     model = ImageRequest.Builder(LocalContext.current)
-                        .data(list[boundedIndex].image).placeholder(R.drawable.ic_google).build()
+                        .data(list[boundedIndex].image).placeholder(R.drawable.ic_google)
+                        .error(R.drawable.ic_google).build()
                 ),
                 contentDescription = null
             )

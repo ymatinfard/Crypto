@@ -97,7 +97,7 @@ fun MarketScreenContent(
 private fun MainContent(depositClick: () -> Unit) {
     TotalBalance(modifier = Modifier.padding(vertical = 8.dp)) { depositClick() }
     Spacer(modifier = Modifier.height(16.dp))
-    Banner(banner = Banner(title = "Banner", description = listOf(stringResource(id = R.string.invite_your_friend_to_get_40)), iconUrl = ""))
+    Banner(banner = Banner(title = "Banner", description = listOf(stringResource(id = R.string.invite_your_friend_to_get_40), stringResource(id = R.string.invite_your_friend_to_get_40)), iconUrl = ""))
 }
 
 interface MainScreenIntent {
