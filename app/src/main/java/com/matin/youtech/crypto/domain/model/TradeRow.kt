@@ -1,7 +1,6 @@
 package com.matin.youtech.crypto.domain.model
 
 data class TradeRow(
-    val title: String,
     val children: List<TradeItem>
 ) : Component
 

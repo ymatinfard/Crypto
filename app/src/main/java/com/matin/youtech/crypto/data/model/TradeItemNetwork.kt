@@ -28,12 +28,10 @@ data class TradeItemNetwork(
 @SerialName("TradeRowComponent")
 data class TradeRowNetwork(
     override val componentType: ComponentType = ComponentType.TradeRowComponent,
-    val title: String,
     val children: List<TradeItemNetwork>
 ) : ComponentNetwork {
     override fun toDomain(): Component {
         return TradeRow(
-            title = title,
             children = children.map { it.toDomain() as TradeItem }
         )
     }

@@ -1,9 +1,7 @@
 package com.matin.youtech.crypto.designsystem
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -23,12 +21,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.domain.model.TradeItem
 import com.matin.youtech.crypto.domain.model.TradeRow
@@ -40,8 +36,6 @@ fun TradeRow(
 ) {
     val screenWith = LocalConfiguration.current.screenWidthDp.dp
     Column {
-        RowTitle(title = tradeRow.title)
-        Spacer(modifier = Modifier.height(6.dp))
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(6.dp)
         ) {
@@ -93,24 +87,6 @@ fun TradeRowItem(
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.outline
                 )
-            }
-        }
-    }
-}
-
-@Composable
-fun RowTitle(title: String?, isPro: Boolean = true) {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        androidx.compose.material3.Text(text = title ?: "")
-        if (isPro) {
-            Box(
-                modifier = Modifier
-                    .padding(start = 4.dp)
-                    .clip(RoundedCornerShape(18.dp))
-                    .background(MaterialTheme.colorScheme.primary)
-            )
-            {
-                Text("Pro", fontSize = 10.sp, modifier = Modifier.padding(horizontal = 4.dp))
             }
         }
     }

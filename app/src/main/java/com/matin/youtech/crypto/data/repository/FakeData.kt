@@ -131,3 +131,24 @@ fun fakePortfolio(): PortfolioNetwork {
     )
     return PortfolioNetwork(id = "123", marketItems = marketItems)
 }
+
+fun getFakeScreen() = """{
+         "title": "Discovery",
+         "components": [
+            {"type": "BannerComponent", "title": "Banner title goes here", "description": ["Description line 1", "Description line 2"], "iconUrl": "https://example_ui.com/icon.png"},
+            {"type": "RowTitleComponent", "title": "Top Gainers", "badge": "Pro"},
+            {"type": "TradeRowComponent", "children": [
+            {"coinName": "BTC","iconUrl": "https://example.com/btc.png","price": "345.123","change": "1.2"},
+            {"coinName": "ETH", "iconUrl": "https://example.com/eth.png", "price": "234.567", "change": "0.5"},
+            {"coinName": "LTC", "iconUrl": "https://example.com/ltc.png", "price": "123.456", "change": "-0.8"},
+            {"coinName": "SOL", "iconUrl": "https://example.com/sol.png", "price": "123.456", "change": "-0.8"},
+            {"coinName": "LINK", "iconUrl": "https://example.com/link.png", "price": "123.456", "change": "-0.8"}
+            ]},
+            {"type": "RowTitleComponent", "title": "Top ROI Trading Bots", "badge": "Pro"},
+            {"type": "TradeBotComponent", "name": "SUN/USDT", "iconUrl": "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/32/color/dash.png", "roi": "123.232", "minInvestment": "899.954 USDT", "runTime": "289d 2h 42m", "copies": 10},
+            {"type": "TradeBotComponent", "name": "ICP/USDT", "iconUrl": "https://github.com/spothq/cryptocurrency-icons/blob/master/32/color/edg.png?raw=true", "roi": "32.32", "minInvestment": "899.954 USDT", "runTime": "289d 2h 42m", "copies": 22},
+            {"type": "TradeBotComponent", "name": "SOL/ETH", "iconUrl": "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/32/color/btc.png", "roi": "153.78", "minInvestment": "899.954 USDT", "runTime": "289d 2h 42m", "copies": 42},
+            {"type": "TradeBotComponent", "name": "ICP/USDT", "iconUrl": "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/32/color/btc.png", "roi": "197.43", "minInvestment": "899.954 USDT", "runTime": "289d 2h 42m", "copies": 10},
+            {"type": "TradeBotComponent", "name": "ICP/USDT", "iconUrl": "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/32/color/btc.png", "roi": "197.43", "minInvestment": "899.954 USDT", "runTime": "289d 2h 42m", "copies": 10}
+            ]
+        }"""
