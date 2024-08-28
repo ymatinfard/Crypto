@@ -1,7 +1,9 @@
 package com.matin.youtech.crypto.designsystem
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,6 +17,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,49 +25,62 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.designsystem.theme.LocalAdditionalColors
 import com.matin.youtech.crypto.domain.model.TradeBot
+import com.matin.youtech.crypto.ui.component.CryptoImageLoader
 
 @Preview
 @Composable
 fun TradeBot(
-    modifier: Modifier = Modifier, tradeBot: TradeBot = TradeBot(
+    tradeBot: TradeBot = TradeBot(
         name = "TradeBot",
         iconUrl = "https://example.com/icon.png",
-        roi = "10%",
+        roi = "108.23",
         minInvestment = "899.954 USDT",
         runTime = "289d 2h 42m",
         copies = 10
     )
 ) {
     val additionalColors = LocalAdditionalColors.current
-    val isExpanded by remember {
-        mutableStateOf(true)
+    var isExpanded by remember {
+        mutableStateOf(false)
     }
 
-    Column {
+    Column(modifier = Modifier.padding(vertical = 14.dp)) {
         Row(
-            modifier = modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { isExpanded = !isExpanded },
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(
-                    modifier = Modifier.size(24.dp),
-                    painter = painterResource(R.drawable.ic_google),
-                    contentDescription = null
+                CryptoImageLoader(
+                    url = tradeBot.iconUrl,
+                    modifier = Modifier
+                        .size(24.dp)
+                        .padding(end = 6.dp)
                 )
                 Text(text = tradeBot.name)
             }
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(text = "ROI", modifier = Modifier.padding(end = 4.dp))
-                Text(text = tradeBot.roi, color = additionalColors.positiveRate)
+                Text(
+                    text = "ROI",
+                    modifier = Modifier.padding(end = 4.dp),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.outline
+                )
+                Text(
+                    text = tradeBot.roi + "%",
+                    color = additionalColors.positiveRate,
+                    modifier = Modifier.padding(end = 6.dp)
+                )
                 Icon(
                     imageVector = if (isExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
                     contentDescription = null
@@ -74,14 +90,15 @@ fun TradeBot(
 
         AnimatedVisibility(visible = isExpanded) {
             Card(
-                modifier
+                Modifier
                     .padding(top = 6.dp)
                     .border(
-                        width = 2.dp,
+                        width = 1.dp,
                         shape = RoundedCornerShape(18.dp),
-                        color = MaterialTheme.colorScheme.outline
+                        color = MaterialTheme.colorScheme.outlineVariant
                     )
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = Color.Transparent)
             ) {
                 Box(
                     modifier = Modifier.padding(8.dp),
