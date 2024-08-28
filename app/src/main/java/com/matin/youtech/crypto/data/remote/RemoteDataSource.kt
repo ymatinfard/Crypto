@@ -2,6 +2,7 @@ package com.matin.youtech.crypto.data.remote
 
 import com.matin.youtech.crypto.data.model.BannerNetwork
 import com.matin.youtech.crypto.data.model.ComponentNetwork
+import com.matin.youtech.crypto.data.model.LineSpaceNetwork
 import com.matin.youtech.crypto.data.model.MarketItemNetwork
 import com.matin.youtech.crypto.data.model.PortfolioNetwork
 import com.matin.youtech.crypto.data.model.RowTitleNetwork
@@ -36,6 +37,7 @@ class RemoteDataSourceImpl @Inject constructor(private val scope: CoroutineScope
                 subclass(TradeRowNetwork::class, TradeRowNetwork.serializer())
                 subclass(TradeBotNetwork::class, TradeBotNetwork.serializer())
                 subclass(RowTitleNetwork::class, RowTitleNetwork.serializer())
+                subclass(LineSpaceNetwork::class, LineSpaceNetwork.serializer())
             }
         }
     }

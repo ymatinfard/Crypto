@@ -9,4 +9,5 @@ enum class ComponentType {
     TradeRowItemComponent,
     TradeBotComponent,
     RowTitleComponent,
+    LineSpaceComponent,
 }

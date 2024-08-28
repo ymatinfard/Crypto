@@ -144,6 +144,7 @@ fun getFakeScreen() = """{
             {"coinName": "SOL", "iconUrl": "https://example.com/sol.png", "price": "123.456", "change": "-0.8"},
             {"coinName": "LINK", "iconUrl": "https://example.com/link.png", "price": "123.456", "change": "-0.8"}
             ]},
+            {"type": "LineSpaceComponent", "lineCount": 4 },
             {"type": "RowTitleComponent", "title": "Top ROI Trading Bots", "badge": "Pro"},
             {"type": "TradeBotComponent", "name": "SUN/USDT", "iconUrl": "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/32/color/dash.png", "roi": "123.232", "minInvestment": "899.954 USDT", "runTime": "289d 2h 42m", "copies": 10},
             {"type": "TradeBotComponent", "name": "ICP/USDT", "iconUrl": "https://github.com/spothq/cryptocurrency-icons/blob/master/32/color/edg.png?raw=true", "roi": "32.32", "minInvestment": "899.954 USDT", "runTime": "289d 2h 42m", "copies": 22},

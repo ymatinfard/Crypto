@@ -7,11 +7,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.matin.youtech.crypto.designsystem.Banner
+import com.matin.youtech.crypto.designsystem.LineSpace
 import com.matin.youtech.crypto.designsystem.RowTitle
 import com.matin.youtech.crypto.designsystem.TradeBot
 import com.matin.youtech.crypto.designsystem.TradeRow
 import com.matin.youtech.crypto.domain.model.Banner
 import com.matin.youtech.crypto.domain.model.Component
+import com.matin.youtech.crypto.domain.model.LineSpace
 import com.matin.youtech.crypto.domain.model.RowTitle
 import com.matin.youtech.crypto.domain.model.Screen
 import com.matin.youtech.crypto.domain.model.TradeBot
@@ -39,6 +41,7 @@ object UIRenderer {
             Banner::class.java to { component -> Banner(component as Banner) },
             TradeRow::class.java to { component -> TradeRow(component as TradeRow) },
             TradeBot::class.java to { component -> TradeBot(component as TradeBot) },
-            RowTitle::class.java to { component -> RowTitle(component as RowTitle) }
+            RowTitle::class.java to { component -> RowTitle(component as RowTitle) },
+            LineSpace::class.java to { component -> LineSpace(component as LineSpace)}
         )
 }
