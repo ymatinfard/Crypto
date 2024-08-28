@@ -1,9 +1,9 @@
 package com.matin.youtech.crypto.designsystem
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -51,12 +51,15 @@ fun TradeBot(
     var isExpanded by remember {
         mutableStateOf(false)
     }
+    val interactionSource = remember { MutableInteractionSource() }
 
-    Column(modifier = Modifier.padding(vertical = 14.dp)) {
+    Column(modifier = Modifier.padding(vertical = 14.dp, horizontal = SCREEN_SIDE_PADDING.dp)) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .clickable { isExpanded = !isExpanded },
+                .clickable(interactionSource = interactionSource, indication = null) {
+                    isExpanded = !isExpanded
+                },
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -97,7 +100,11 @@ fun TradeBot(
                         shape = RoundedCornerShape(18.dp),
                         color = MaterialTheme.colorScheme.outlineVariant
                     )
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .clickable(
+                        interactionSource = interactionSource,
+                        indication = null
+                    ) { isExpanded = !isExpanded },
                 colors = CardDefaults.cardColors(containerColor = Color.Transparent)
             ) {
                 Box(
