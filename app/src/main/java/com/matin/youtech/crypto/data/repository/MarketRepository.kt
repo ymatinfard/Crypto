@@ -1,6 +1,7 @@
-package com.matin.youtech.crypto.data
+package com.matin.youtech.crypto.data.repository
 
 import com.matin.youtech.crypto.data.remote.RemoteDataSource
+import com.matin.youtech.crypto.data.toDomain
 import com.matin.youtech.crypto.domain.model.MarketItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

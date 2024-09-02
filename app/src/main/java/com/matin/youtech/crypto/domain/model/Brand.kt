@@ -1,3 +1,6 @@
 package com.matin.youtech.crypto.domain.model
 
-data class Brand(val name: String, val image: Int)
+import com.matin.youtech.annotaions.Component
+
+
+data class Brand(val name: String, val image: String): Component

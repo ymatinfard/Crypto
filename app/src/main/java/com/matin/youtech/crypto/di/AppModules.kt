@@ -1,13 +1,15 @@
 package com.matin.youtech.crypto.di
 
-import com.matin.youtech.crypto.data.MarketRepository
-import com.matin.youtech.crypto.data.MarketRepositoryImpl
-import com.matin.youtech.crypto.data.PortfolioRepository
-import com.matin.youtech.crypto.data.PortfolioRepositoryImpl
+import com.matin.youtech.crypto.data.repository.MarketRepository
+import com.matin.youtech.crypto.data.repository.MarketRepositoryImpl
+import com.matin.youtech.crypto.data.repository.PortfolioRepository
+import com.matin.youtech.crypto.data.repository.PortfolioRepositoryImpl
 import com.matin.youtech.crypto.data.local.LocalDataSource
 import com.matin.youtech.crypto.data.local.LocalDataSourceImpl
 import com.matin.youtech.crypto.data.remote.RemoteDataSource
 import com.matin.youtech.crypto.data.remote.RemoteDataSourceImpl
+import com.matin.youtech.crypto.data.repository.DiscoveryRepository
+import com.matin.youtech.crypto.data.repository.DiscoveryRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -29,6 +31,10 @@ abstract class AppModules {
     @Binds
     @Singleton
     abstract fun bindsPortfolioRepository(portfolioRepositoryImpl: PortfolioRepositoryImpl): PortfolioRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindsDiscoveryRepository(discoveryRepositoryImpl: DiscoveryRepositoryImpl): DiscoveryRepository
 
     @Binds
     @Singleton

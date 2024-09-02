@@ -8,5 +8,7 @@
     <string name="fake_balance">$10,789.12</string>
     <string name="total_balance">Total Balance</string>
     <string name="market">Market</string>
-    <string name="portfolio">Portfolio\n</string>
+    <string name="portfolio">Portfolio</string>
+    <string name="discover">Discover</string>
+    <string name="profile">Profile</string>
 </resources>
