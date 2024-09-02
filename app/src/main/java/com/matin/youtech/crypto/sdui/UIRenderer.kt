@@ -1,43 +1,41 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package com.matin.youtech.crypto.sdui
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.matin.youtech.crypto.designsystem.Banner
-import com.matin.youtech.crypto.designsystem.LineSpace
-import com.matin.youtech.crypto.designsystem.RowTitle
-import com.matin.youtech.crypto.designsystem.TradeBot
-import com.matin.youtech.crypto.designsystem.TradeRow
-import com.matin.youtech.crypto.domain.model.Banner
-import com.matin.youtech.crypto.domain.model.Component
-import com.matin.youtech.crypto.domain.model.LineSpace
-import com.matin.youtech.crypto.domain.model.RowTitle
+import com.matin.youtech.annotaions.Component
+
 import com.matin.youtech.crypto.domain.model.Screen
-import com.matin.youtech.crypto.domain.model.TradeBot
-import com.matin.youtech.crypto.domain.model.TradeRow
 
 
 object UIRenderer {
     @Composable
-    fun render(screen: Screen) {
+    fun Render(screen: Screen) {
         LazyColumn(
             modifier = Modifier.fillMaxSize()
         ) {
-            item {
-                screen.components.forEach { component ->
-                    componentRenderers[component::class.java]?.invoke(component)
+            items(screen.components) { componentData ->
+                val rendererClass = componentRenderers[componentData::class.java]
+                if (rendererClass != null) {
+                    val renderer = rendererClass.getDeclaredConstructor().newInstance()
+                    RendererComponent(renderer, componentData)
+                } else {
+                    DefaultRendererComponent(componentData)
                 }
             }
         }
     }
 
-    private val componentRenderers: Map<Class<*>, @Composable (Component) -> Unit> =
-        mapOf(
-            Banner::class.java to { component -> Banner(component as Banner) },
-            TradeRow::class.java to { component -> TradeRow(component as TradeRow) },
-            TradeBot::class.java to { component -> TradeBot(component as TradeBot) },
-            RowTitle::class.java to { component -> RowTitle(component as RowTitle) },
-            LineSpace::class.java to { component -> LineSpace(component as LineSpace)}
-        )
+    @Composable
+    private fun <T : Component> RendererComponent(
+        renderer: UIComponent<out T>,
+        componentData: Component
+    ) {
+        @Suppress("UNCHECKED_CAST")
+        (renderer as UIComponent<T>).BuildUI(componentData as T)
+    }
 }
