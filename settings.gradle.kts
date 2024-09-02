@@ -22,3 +22,5 @@ dependencyResolutionManagement {
 rootProject.name = "Crypto"
 include(":app")
 include(":benchmark")
+include(":annotations")
+include(":processes")
