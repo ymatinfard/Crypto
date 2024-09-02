@@ -25,73 +25,83 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.matin.youtech.annotaions.ComponentRenderer
 import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.domain.model.TradeItem
 import com.matin.youtech.crypto.domain.model.TradeRow
+import com.matin.youtech.crypto.sdui.UIComponent
 
+@ComponentRenderer(component = TradeRow::class)
+class TradeRowComponent : UIComponent<TradeRow> {
 
-@Composable
-fun TradeRow(
-    tradeRow: TradeRow
-) {
-    val screenWith = LocalConfiguration.current.screenWidthDp.dp
-    val itemPadding = 6.dp
-    Column {
-        LazyRow(
-            horizontalArrangement = Arrangement.spacedBy(itemPadding),
-            modifier = Modifier.padding(start = SCREEN_SIDE_PADDING.dp)
-        ) {
-            items(tradeRow.children) {
-                TradeRowItem(
-                    modifier = Modifier.width(screenWith / 2 - (itemPadding * 2) - SCREEN_SIDE_PADDING.dp),
-                    item = it
-                )
+    @Composable
+    override fun BuildUI(data: TradeRow) {
+        TradeRow(tradeRow = data)
+    }
+
+    @Composable
+    fun TradeRow(
+        tradeRow: TradeRow
+    ) {
+        val screenWith = LocalConfiguration.current.screenWidthDp.dp
+        val itemPadding = 6.dp
+        Column {
+            LazyRow(
+                horizontalArrangement = Arrangement.spacedBy(itemPadding),
+                modifier = Modifier.padding(start = SCREEN_SIDE_PADDING.dp)
+            ) {
+                items(tradeRow.children) {
+                    TradeRowItem(
+                        modifier = Modifier.width(screenWith / 2 - (itemPadding * 2) - SCREEN_SIDE_PADDING.dp),
+                        item = it
+                    )
+                }
             }
         }
     }
-}
 
-@Composable
-fun TradeRowItem(
-    modifier: Modifier = Modifier,
-    item: TradeItem = TradeItem(
-        coinName = "BTC",
-        iconUrl = "icon_url",
-        price = "345.123",
-        change = "1.2%"
-    )
-) {
-    Card(
-        modifier = modifier,
-        shape = RoundedCornerShape(12.dp),
-        border = BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.outlineVariant),
-        colors = CardDefaults.cardColors(containerColor = Color.Transparent)
+    @Composable
+    fun TradeRowItem(
+        modifier: Modifier = Modifier,
+        item: TradeItem = TradeItem(
+            coinName = "BTC",
+            iconUrl = "icon_url",
+            price = "345.123",
+            change = "1.2%"
+        )
     ) {
-        Column(modifier = Modifier.padding(6.dp)) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(text = item.coinName)
-                Icon(
-                    modifier = Modifier.size(20.dp),
-                    //  painter = rememberAsyncImagePainter(model = item.iconUrl),
-                    painter = painterResource(id = R.drawable.ic_google),
-                    contentDescription = null
-                )
-            }
-            Spacer(modifier = Modifier.height(20.dp))
-            Column {
-                Text(
-                    text = item.change.addPriceChangeSign(),
-                    color = pickPriceChangeColor(item.change)
-                )
-                Text(
-                    text = "$${item.price}",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.outline
-                )
+        Card(
+            modifier = modifier,
+            shape = RoundedCornerShape(12.dp),
+            border = BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.outlineVariant),
+            colors = CardDefaults.cardColors(containerColor = Color.Transparent)
+        ) {
+            Column(modifier = Modifier.padding(6.dp)) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(text = item.coinName)
+                    Icon(
+                        modifier = Modifier.size(20.dp),
+                        //  painter = rememberAsyncImagePainter(model = item.iconUrl),
+                        painter = painterResource(id = R.drawable.ic_google),
+                        contentDescription = null
+                    )
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+                Column {
+                    Text(
+                        text = item.change.addPriceChangeSign(),
+                        color = pickPriceChangeColor(item.change)
+                    )
+                    Text(
+                        text = "$${item.price}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.outline
+                    )
+                }
             }
         }
     }

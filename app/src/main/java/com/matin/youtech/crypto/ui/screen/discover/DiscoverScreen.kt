@@ -52,6 +52,6 @@ fun DiscoverScreenContent(screen: Screen) {
             .fillMaxSize()
             .windowInsetsPadding(WindowInsets.statusBars)
     ) {
-        UIRenderer.render(screen)
+        UIRenderer.Render(screen)
     }
 }

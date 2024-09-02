@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -19,7 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.matin.youtech.crypto.R
-import com.matin.youtech.crypto.designsystem.Banner
+import com.matin.youtech.crypto.designsystem.BannerComponent
 import com.matin.youtech.crypto.domain.model.Banner
 import com.matin.youtech.crypto.ui.component.CryptoLoadingWheel
 import com.matin.youtech.crypto.ui.component.MarketItemRow
@@ -71,33 +70,42 @@ fun MarketScreenContent(
     depositClick: () -> Unit,
     marketTabClick: (MarketTabAction) -> Unit
 ) {
-        Column(
-            modifier = Modifier
-                .padding(
-                    start = 12.dp,
-                    end = 12.dp,
-                )
-        ) {
-            MarketTopBar()
-            LazyColumn(contentPadding = PaddingValues(vertical = 8.dp)) {
-                item {
-                    MainContent(depositClick)
-                }
-                stickyHeader {
-                    StickyMarketTab(marketTabClick)
-                }
-                items(uiState.marketList) {
-                    MarketItemRow(item = it)
-                }
+    Column(
+        modifier = Modifier
+            .padding(
+                start = 12.dp,
+                end = 12.dp,
+            )
+    ) {
+        MarketTopBar()
+        LazyColumn(contentPadding = PaddingValues(vertical = 8.dp)) {
+            item {
+                MainContent(depositClick)
+            }
+            stickyHeader {
+                StickyMarketTab(marketTabClick)
+            }
+            items(uiState.marketList) {
+                MarketItemRow(item = it)
             }
         }
+    }
 }
 
 @Composable
 private fun MainContent(depositClick: () -> Unit) {
     TotalBalance(modifier = Modifier.padding(vertical = 8.dp)) { depositClick() }
     Spacer(modifier = Modifier.height(16.dp))
-    Banner(banner = Banner(title = "Banner", description = listOf(stringResource(id = R.string.invite_your_friend_to_get_40), stringResource(id = R.string.invite_your_friend_to_get_40)), iconUrl = ""))
+    BannerComponent().BuildUI(
+        data = Banner(
+            title = "Banner",
+            description = listOf(
+                stringResource(id = R.string.invite_your_friend_to_get_40),
+                stringResource(id = R.string.invite_your_friend_to_get_40)
+            ),
+            iconUrl = ""
+        )
+    )
 }
 
 interface MainScreenIntent {

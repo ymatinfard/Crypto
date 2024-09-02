@@ -13,21 +13,43 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.matin.youtech.annotaions.ComponentRenderer
 import com.matin.youtech.crypto.domain.model.RowTitle
+import com.matin.youtech.crypto.sdui.UIComponent
 
-@Composable
-fun RowTitle(rowTitle: RowTitle) {
-    Row(modifier = Modifier.padding(vertical = 12.dp, horizontal = SCREEN_SIDE_PADDING.dp), verticalAlignment = Alignment.CenterVertically) {
-        Text(text = rowTitle.title ?: "", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurface)
-        if (rowTitle.badge != null) {
-            Box(
-                modifier = Modifier
-                    .padding(start = 4.dp)
-                    .clip(RoundedCornerShape(18.dp))
-                    .background(MaterialTheme.colorScheme.primary)
+@ComponentRenderer(RowTitle::class)
+class RowTitleComponent : UIComponent<RowTitle> {
+
+    @Composable
+    override fun BuildUI(data: RowTitle) {
+        RowTitle(rowTitle = data)
+    }
+
+    @Composable
+    fun RowTitle(rowTitle: RowTitle) {
+        Row(
+            modifier = Modifier.padding(vertical = 12.dp, horizontal = SCREEN_SIDE_PADDING.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = rowTitle.title ?: "",
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurface
             )
-            {
-                Text(rowTitle.badge, fontSize = 10.sp, modifier = Modifier.padding(horizontal = 4.dp))
+            if (rowTitle.badge != null) {
+                Box(
+                    modifier = Modifier
+                        .padding(start = 4.dp)
+                        .clip(RoundedCornerShape(18.dp))
+                        .background(MaterialTheme.colorScheme.primary)
+                )
+                {
+                    Text(
+                        rowTitle.badge,
+                        fontSize = 10.sp,
+                        modifier = Modifier.padding(horizontal = 4.dp)
+                    )
+                }
             }
         }
     }
