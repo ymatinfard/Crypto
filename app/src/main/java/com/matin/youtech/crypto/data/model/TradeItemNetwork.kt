@@ -1,6 +1,6 @@
 package com.matin.youtech.crypto.data.model
 
-import com.matin.youtech.crypto.domain.model.Component
+import com.matin.youtech.annotaions.Component
 import com.matin.youtech.crypto.domain.model.TradeItem
 import com.matin.youtech.crypto.domain.model.TradeRow
 import kotlinx.serialization.SerialName

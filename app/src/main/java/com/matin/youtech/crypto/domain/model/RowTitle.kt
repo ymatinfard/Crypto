@@ -1,5 +1,6 @@
 package com.matin.youtech.crypto.domain.model
 
+import com.matin.youtech.annotaions.Component
 import kotlinx.serialization.Serializable
 
 @Serializable
