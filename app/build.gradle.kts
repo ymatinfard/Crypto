@@ -119,10 +119,10 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.kotlinx.serialization.json)
 
-    testImplementation(libs.junit.junit)
-
+    ksp (project(":processes"))
     ksp(libs.hilt.compiler)
 
+    testImplementation(libs.junit.junit)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
