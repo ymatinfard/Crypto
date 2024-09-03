@@ -18,5 +18,5 @@ This project demonstrates advanced techniques in data caching, user interface (U
 ### Portfolio Screen
 <img src="screenshot/portfolio_screenshot.png" width="250" height="500">
 
-## Discover Screen
+## Discover Screen(Server-Driven)
 <img src="screenshot/discover_screenshot.png" width="250" height="500">
