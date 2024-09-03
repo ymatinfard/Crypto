@@ -132,8 +132,8 @@ fun fakePortfolio(): PortfolioNetwork {
     return PortfolioNetwork(id = "123", marketItems = marketItems)
 }
 
-fun getFakeScreen() = """{
-         "title": "Discovery",
+fun getDemoScreen() = """{
+         "title": "Discover",
          "components": [
             {"type": "BannerComponent", "title": "Banner title goes here", "description": ["Description line 1", "Description line 2"], "iconUrl": "https://example_ui.com/icon.png"},
             

@@ -21,7 +21,6 @@ class ScreenNetworkTest {
                     iconUrl = "http://example_url.com"
                 ),
                 TradeRowNetwork(
-                    title = "Trade Row",
                     componentType = ComponentType.TradeRowComponent,
                     children = listOf(
                         TradeItemNetwork(
@@ -44,7 +43,6 @@ class ScreenNetworkTest {
                     iconUrl = "http://example_url.com"
                 ),
                 TradeRow(
-                    title = "Trade Row",
                     children = listOf(
                         TradeItem(
                             coinName = "Coin 1",

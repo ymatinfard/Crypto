@@ -11,7 +11,7 @@ import com.matin.youtech.crypto.data.model.TradeBotNetwork
 import com.matin.youtech.crypto.data.model.TradeRowNetwork
 import com.matin.youtech.crypto.data.repository.fakePortfolio
 import com.matin.youtech.crypto.data.repository.getFakeMarketList
-import com.matin.youtech.crypto.data.repository.getFakeScreen
+import com.matin.youtech.crypto.data.repository.getDemoScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -56,6 +56,6 @@ class RemoteDataSourceImpl @Inject constructor(private val scope: CoroutineScope
 
     override suspend fun getDiscoveryScreen(): ScreenNetwork {
         // delay(1000)
-        return jsonParser.decodeFromString<ScreenNetwork>(getFakeScreen())
+        return jsonParser.decodeFromString<ScreenNetwork>(getDemoScreen())
     }
 }
