@@ -17,4 +17,4 @@ This project demonstrates advanced techniques in data caching, user interface (U
 <img src="screenshot/portfolio_screenshot.png" width="250" height="500">
 
 ## Descover Screen
-<img src="screenshot/descover_screenshot.png" width="250" height="500">
+<img src="screenshot/discover_screenshot.png" width="250" height="500">
