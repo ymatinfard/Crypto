@@ -9,3 +9,25 @@ plugins {
     alias(libs.plugins.kotlinSerialization) apply false
     alias(libs.plugins.kotlin.jvm) apply false
 }
+
+subprojects {
+    plugins.withId("com.android.application") {
+        extensions.getByType<com.android.build.gradle.BaseExtension>().apply {
+            compileOptions {
+              //  isCoreLibraryDesugaringEnabled = true
+                sourceCompatibility = JavaVersion.VERSION_17
+                targetCompatibility = JavaVersion.VERSION_17
+            }
+        }
+    }
+    plugins.withId("com.android.library") {
+        extensions.getByType<com.android.build.gradle.BaseExtension>().apply {
+            compileOptions {
+            //    isCoreLibraryDesugaringEnabled = true
+                sourceCompatibility = JavaVersion.VERSION_17
+                targetCompatibility = JavaVersion.VERSION_17
+            }
+        }
+    }
+}
+
