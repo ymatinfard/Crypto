@@ -1,6 +1,7 @@
 package com.matin.youtech.crypto.designsystem
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,13 +30,15 @@ import com.matin.youtech.annotaions.ComponentRenderer
 import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.domain.model.TradeItem
 import com.matin.youtech.crypto.domain.model.TradeRow
+import com.matin.youtech.crypto.sdui.Action
+import com.matin.youtech.crypto.sdui.ActionHandler
 import com.matin.youtech.crypto.sdui.UIComponent
 
 @ComponentRenderer(component = TradeRow::class)
 class TradeRowComponent : UIComponent<TradeRow> {
 
     @Composable
-    override fun BuildUI(data: TradeRow) {
+    override fun BuildUI(data: TradeRow, actionHandler: ActionHandler) {
         TradeRow(tradeRow = data)
     }
 
@@ -71,7 +74,9 @@ class TradeRowComponent : UIComponent<TradeRow> {
         )
     ) {
         Card(
-            modifier = modifier,
+            modifier = modifier.clickable {
+                //ActionHandler.handle(actionH.ShowBottomSheet)
+            },
             shape = RoundedCornerShape(12.dp),
             border = BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.outlineVariant),
             colors = CardDefaults.cardColors(containerColor = Color.Transparent)

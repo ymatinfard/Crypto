@@ -5,5 +5,5 @@ import com.matin.youtech.annotaions.Component
 
 interface UIComponent<T: Component> {
     @Composable
-    fun BuildUI(data: T)
+    fun BuildUI(data: T, actionHandler: ActionHandler)
 }
