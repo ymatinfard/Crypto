@@ -22,15 +22,16 @@ import com.matin.youtech.crypto.domain.model.Screen
 import com.matin.youtech.crypto.sdui.ActionHandler
 import com.matin.youtech.crypto.sdui.UIComponent
 import com.matin.youtech.crypto.sdui.UIRenderer
+import com.matin.youtech.crypto.ui.screen.discover.ActionListener
 
 class CryptoBottomSheet : UIComponent<Screen> {
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    override fun BuildUI(data: Screen, actionHandler: ActionHandler) {
+    override fun BuildUI(data: Screen, action: ActionListener?) {
        // DataBottomSheet()
         ModalBottomSheet(onDismissRequest = {}) {
-            UIRenderer().Render(screen = data)
+            UIRenderer().Render(screen = data, action)
         }
     }
 }

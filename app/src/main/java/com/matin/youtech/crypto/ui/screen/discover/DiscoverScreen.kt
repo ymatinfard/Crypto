@@ -13,21 +13,24 @@ import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.domain.model.Screen
+import com.matin.youtech.crypto.sdui.Action
 import com.matin.youtech.crypto.sdui.UIRenderer
 import com.matin.youtech.crypto.ui.component.CryptoLoadingWheel
 
+typealias ActionListener = (Action) -> Unit
+
 @Composable
-fun DiscoverScreenRoute(viewModel: DiscoverScreenViewModel) {
+fun DiscoverScreenRoute(viewModel: DiscoverScreenViewModel, action: ActionListener) {
 
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
-    DiscoverScreen(uiState.value)
+    DiscoverScreen(uiState.value, action)
 }
 
 @Composable
-fun DiscoverScreen(uiState: DiscoveryScreenUIState) {
+fun DiscoverScreen(uiState: DiscoveryScreenUIState, action: ActionListener) {
     when (uiState) {
         is DiscoveryScreenUIState.Success -> {
-            DiscoverScreenContent(screen = uiState.data)
+            DiscoverScreenContent(screen = uiState.data, action)
         }
 
         is DiscoveryScreenUIState.Loading -> {
@@ -46,12 +49,12 @@ fun DiscoverScreen(uiState: DiscoveryScreenUIState) {
 }
 
 @Composable
-fun DiscoverScreenContent(screen: Screen) {
+fun DiscoverScreenContent(screen: Screen, action: ActionListener) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .windowInsetsPadding(WindowInsets.statusBars)
     ) {
-        UIRenderer().Render(screen)
+        UIRenderer().Render(screen, action)
     }
 }
