@@ -118,6 +118,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.kotlinx.serialization.json)
+    implementation (libs.compose.charts)
 
     ksp (project(":processes"))
     ksp(libs.hilt.compiler)
