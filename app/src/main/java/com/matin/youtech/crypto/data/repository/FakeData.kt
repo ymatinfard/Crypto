@@ -169,3 +169,10 @@ fun getDemoScreen() = """{
             {"type": "TradeBotComponent", "name": "ICP/USDT", "iconUrl": "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/32/color/btc.png", "roi": "197.43", "minInvestment": "899.954 USDT", "runTime": "289d 2h 42m", "copies": 10}
             ]
         }"""
+
+fun getDemoChartScreen() = """{
+          "title": "Discover",
+         "components": [
+            {"type": "LineChartComponent", "label": "BTC", "points": [10.2, 23.34, 19, 32, 24.3, 29.1]}
+            ]
+}""".trimIndent()

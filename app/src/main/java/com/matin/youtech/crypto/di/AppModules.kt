@@ -8,8 +8,8 @@ import com.matin.youtech.crypto.data.local.LocalDataSource
 import com.matin.youtech.crypto.data.local.LocalDataSourceImpl
 import com.matin.youtech.crypto.data.remote.RemoteDataSource
 import com.matin.youtech.crypto.data.remote.RemoteDataSourceImpl
-import com.matin.youtech.crypto.data.repository.DiscoveryRepository
-import com.matin.youtech.crypto.data.repository.DiscoveryRepositoryImpl
+import com.matin.youtech.crypto.data.repository.SDUIRepository
+import com.matin.youtech.crypto.data.repository.SDUIRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -36,7 +36,7 @@ abstract class AppModules {
 
     @Binds
     @Singleton
-    abstract fun bindsDiscoveryRepository(discoveryRepositoryImpl: DiscoveryRepositoryImpl): DiscoveryRepository
+    abstract fun bindsDiscoveryRepository(discoveryRepositoryImpl: SDUIRepositoryImpl): SDUIRepository
 
     @Binds
     @Singleton
