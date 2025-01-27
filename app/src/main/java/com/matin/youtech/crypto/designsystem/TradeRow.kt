@@ -31,11 +31,10 @@ import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.domain.model.TradeItem
 import com.matin.youtech.crypto.domain.model.TradeRow
 import com.matin.youtech.crypto.sdui.Action
-import com.matin.youtech.crypto.sdui.ActionHandler
 import com.matin.youtech.crypto.sdui.UIComponent
 import com.matin.youtech.crypto.ui.screen.discover.ActionListener
 
-@ComponentRenderer(component = TradeRow::class)
+@ComponentRenderer(dataComponent = TradeRow::class)
 class TradeRowComponent : UIComponent<TradeRow> {
 
     @Composable

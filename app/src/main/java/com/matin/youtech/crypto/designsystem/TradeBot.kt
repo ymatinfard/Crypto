@@ -40,7 +40,7 @@ import com.matin.youtech.crypto.sdui.UIComponent
 import com.matin.youtech.crypto.ui.component.CryptoImageLoader
 import com.matin.youtech.crypto.ui.screen.discover.ActionListener
 
-@ComponentRenderer(component = TradeBot::class)
+@ComponentRenderer(dataComponent = TradeBot::class)
 class TradeBotComponent : UIComponent<TradeBot> {
 
     @Composable

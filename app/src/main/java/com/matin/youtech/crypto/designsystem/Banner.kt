@@ -36,12 +36,11 @@ import com.matin.youtech.annotaions.ComponentRenderer
 import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.domain.model.Banner
 import com.matin.youtech.crypto.sdui.Action
-import com.matin.youtech.crypto.sdui.ActionHandler
 import com.matin.youtech.crypto.sdui.UIComponent
 import com.matin.youtech.crypto.ui.screen.discover.ActionListener
 import kotlin.math.absoluteValue
 
-@ComponentRenderer(component = Banner::class)
+@ComponentRenderer(dataComponent = Banner::class)
 class BannerComponent : UIComponent<Banner> {
 
     @Composable
