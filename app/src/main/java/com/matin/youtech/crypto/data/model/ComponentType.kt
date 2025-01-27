@@ -10,4 +10,5 @@ enum class ComponentType {
     TradeBotComponent,
     RowTitleComponent,
     LineSpaceComponent,
+    LineChartComponent,
 }
