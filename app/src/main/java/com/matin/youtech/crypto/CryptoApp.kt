@@ -7,26 +7,27 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.navigation.compose.rememberNavController
-import com.matin.youtech.crypto.ui.component.CryptoBottomNavigation
 import com.matin.youtech.crypto.navigation.CryptoNavHost
 import com.matin.youtech.crypto.navigation.TopLevelDestination
+import com.matin.youtech.crypto.ui.component.CryptoBottomNavigation
+import com.matin.youtech.crypto.ui.rememberCryptoAppState
 
 @Composable
 fun CryptoApp() {
-    val navController = rememberNavController()
+    val appState = rememberCryptoAppState()
     var selectedDestination by remember {
         mutableStateOf(TopLevelDestination.Market)
     }
 
+
     Column {
-        CryptoNavHost(modifier = Modifier.weight(1f), navController = navController)
+        CryptoNavHost(modifier = Modifier.weight(1f), appState = appState)
         CryptoBottomNavigation(
             currentDestination = selectedDestination,
             noNavigationBarClick = { clickedDestination ->
                 if (selectedDestination == clickedDestination) return@CryptoBottomNavigation
                 selectedDestination = clickedDestination
-                navController.navigate(clickedDestination.route)
+                appState.navController.navigate(clickedDestination.route)
             },
             bottomNavItems = TopLevelDestination.entries
         )

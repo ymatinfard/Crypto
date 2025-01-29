@@ -10,11 +10,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.matin.youtech.annotaions.ComponentRenderer
 import com.matin.youtech.crypto.domain.model.LineChart
 import com.matin.youtech.crypto.sdui.UIComponent
+import com.matin.youtech.crypto.ui.CryptoAppState
 import com.matin.youtech.crypto.ui.screen.discover.ActionListener
 import ir.ehsannarmani.compose_charts.LineChart
 import ir.ehsannarmani.compose_charts.models.AnimationMode
@@ -25,7 +25,7 @@ import ir.ehsannarmani.compose_charts.models.Line
 class LineChartComponent : UIComponent<LineChart> {
 
     @Composable
-    override fun BuildUI(data: LineChart, action: ActionListener?) {
+    override fun BuildUI(data: LineChart, appState: CryptoAppState, action: ActionListener?) {
         Chart(data)
     }
 
@@ -55,11 +55,4 @@ class LineChartComponent : UIComponent<LineChart> {
             }),
         )
     }
-}
-
-@Preview
-@Composable
-fun LineChartPreview() {
-    val chart = LineChartComponent()
-    chart.BuildUI(LineChart("BTC", points = listOf(28.0, 41.0, 5.0, 10.0, 35.0)), action = {})
 }

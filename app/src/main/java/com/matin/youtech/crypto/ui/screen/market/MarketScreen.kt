@@ -20,12 +20,14 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.designsystem.BannerComponent
 import com.matin.youtech.crypto.domain.model.Banner
+import com.matin.youtech.crypto.ui.CryptoAppState
 import com.matin.youtech.crypto.ui.component.CryptoLoadingWheel
 import com.matin.youtech.crypto.ui.component.MarketItemRow
 import com.matin.youtech.crypto.ui.component.MarketTabAction
 import com.matin.youtech.crypto.ui.component.MarketTopBar
 import com.matin.youtech.crypto.ui.component.StickyMarketTab
 import com.matin.youtech.crypto.ui.component.TotalBalance
+import com.matin.youtech.crypto.ui.rememberCryptoAppState
 
 @Composable
 fun MarketScreenRoute(viewModel: MarketScreenViewModel) {
@@ -80,7 +82,7 @@ fun MarketScreenContent(
         MarketTopBar()
         LazyColumn(contentPadding = PaddingValues(vertical = 8.dp)) {
             item {
-                MainContent(depositClick)
+                MainContent(appState = rememberCryptoAppState(), depositClick)
             }
             stickyHeader {
                 StickyMarketTab(marketTabClick)
@@ -93,7 +95,7 @@ fun MarketScreenContent(
 }
 
 @Composable
-private fun MainContent(depositClick: () -> Unit) {
+private fun MainContent(appState: CryptoAppState, depositClick: () -> Unit) {
     TotalBalance(modifier = Modifier.padding(vertical = 8.dp)) { depositClick() }
     Spacer(modifier = Modifier.height(16.dp))
     BannerComponent().BuildUI(
@@ -104,7 +106,7 @@ private fun MainContent(depositClick: () -> Unit) {
                 stringResource(id = R.string.invite_your_friend_to_get_40)
             ),
             iconUrl = ""
-        ), action = null
+        ), appState = appState , action = null
     )
 }
 

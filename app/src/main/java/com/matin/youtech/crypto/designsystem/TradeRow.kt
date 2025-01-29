@@ -32,13 +32,14 @@ import com.matin.youtech.crypto.domain.model.TradeItem
 import com.matin.youtech.crypto.domain.model.TradeRow
 import com.matin.youtech.crypto.sdui.Action
 import com.matin.youtech.crypto.sdui.UIComponent
+import com.matin.youtech.crypto.ui.CryptoAppState
 import com.matin.youtech.crypto.ui.screen.discover.ActionListener
 
 @ComponentRenderer(dataComponent = TradeRow::class)
 class TradeRowComponent : UIComponent<TradeRow> {
 
     @Composable
-    override fun BuildUI(data: TradeRow, action: ActionListener?) {
+    override fun BuildUI(data: TradeRow, appState: CryptoAppState, action: ActionListener?) {
         TradeRow(tradeRow = data, action)
     }
 

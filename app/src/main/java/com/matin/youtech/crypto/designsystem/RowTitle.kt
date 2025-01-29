@@ -16,13 +16,14 @@ import androidx.compose.ui.unit.sp
 import com.matin.youtech.annotaions.ComponentRenderer
 import com.matin.youtech.crypto.domain.model.RowTitle
 import com.matin.youtech.crypto.sdui.UIComponent
+import com.matin.youtech.crypto.ui.CryptoAppState
 import com.matin.youtech.crypto.ui.screen.discover.ActionListener
 
 @ComponentRenderer(RowTitle::class)
 class RowTitleComponent : UIComponent<RowTitle> {
 
     @Composable
-    override fun BuildUI(data: RowTitle, action: ActionListener?) {
+    override fun BuildUI(data: RowTitle, appState: CryptoAppState, action: ActionListener?) {
         RowTitle(rowTitle = data)
     }
 

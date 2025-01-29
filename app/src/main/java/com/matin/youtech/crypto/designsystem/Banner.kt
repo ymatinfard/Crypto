@@ -37,6 +37,7 @@ import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.domain.model.Banner
 import com.matin.youtech.crypto.sdui.Action
 import com.matin.youtech.crypto.sdui.UIComponent
+import com.matin.youtech.crypto.ui.CryptoAppState
 import com.matin.youtech.crypto.ui.screen.discover.ActionListener
 import kotlin.math.absoluteValue
 
@@ -44,13 +45,13 @@ import kotlin.math.absoluteValue
 class BannerComponent : UIComponent<Banner> {
 
     @Composable
-    override fun BuildUI(data: Banner, action: ActionListener?) {
-        Banner(data, action)
+    override fun BuildUI(data: Banner, appState: CryptoAppState, action: ActionListener?) {
+        Banner(data, appState , action)
     }
 
     @OptIn(ExperimentalFoundationApi::class)
     @Composable
-    fun Banner(banner: Banner, action: ActionListener?) {
+    fun Banner(banner: Banner, appState: CryptoAppState, action: ActionListener?) {
         val state = rememberPagerState(pageCount = { banner.description.size })
 
         Column(modifier = Modifier.padding(vertical = 8.dp).clickable {
@@ -71,7 +72,7 @@ class BannerComponent : UIComponent<Banner> {
                 Row(
                     modifier = Modifier
                         .padding(horizontal = 8.dp)
-                        .fillMaxWidth(),
+                        .fillMaxWidth().clickable { appState.setModalVisibility(true) },
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {

@@ -37,6 +37,7 @@ import com.matin.youtech.annotaions.ComponentRenderer
 import com.matin.youtech.crypto.designsystem.theme.LocalAdditionalColors
 import com.matin.youtech.crypto.domain.model.TradeBot
 import com.matin.youtech.crypto.sdui.UIComponent
+import com.matin.youtech.crypto.ui.CryptoAppState
 import com.matin.youtech.crypto.ui.component.CryptoImageLoader
 import com.matin.youtech.crypto.ui.screen.discover.ActionListener
 
@@ -44,7 +45,7 @@ import com.matin.youtech.crypto.ui.screen.discover.ActionListener
 class TradeBotComponent : UIComponent<TradeBot> {
 
     @Composable
-    override fun BuildUI(data: TradeBot, action: ActionListener?) {
+    override fun BuildUI(data: TradeBot, appState: CryptoAppState, action: ActionListener?) {
         TradeBot(tradeBot = data)
     }
 

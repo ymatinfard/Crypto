@@ -9,13 +9,14 @@ import androidx.compose.ui.unit.dp
 import com.matin.youtech.annotaions.ComponentRenderer
 import com.matin.youtech.crypto.domain.model.LineSpace
 import com.matin.youtech.crypto.sdui.UIComponent
+import com.matin.youtech.crypto.ui.CryptoAppState
 import com.matin.youtech.crypto.ui.screen.discover.ActionListener
 
 @ComponentRenderer(LineSpace::class)
 class LineSpaceComponent: UIComponent<LineSpace> {
 
     @Composable
-    override fun BuildUI(data: LineSpace, action: ActionListener?) {
+    override fun BuildUI(data: LineSpace, appState: CryptoAppState, action: ActionListener?) {
         Spacer(modifier = Modifier.fillMaxWidth().height((data.lineCount * 5).dp))
     }
 }

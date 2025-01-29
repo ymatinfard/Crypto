@@ -10,12 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.matin.youtech.annotaions.Component
 import com.matin.youtech.crypto.domain.model.Screen
+import com.matin.youtech.crypto.ui.CryptoAppState
 import com.matin.youtech.crypto.ui.screen.discover.ActionListener
 
 
 class UIRenderer {
     @Composable
-    fun Render(screen: Screen, action: ActionListener?) {
+    fun Render(screen: Screen, appState: CryptoAppState, action: ActionListener?) {
 
         Column(
             modifier = Modifier
@@ -26,41 +27,22 @@ class UIRenderer {
                 val rendererClass = componentRenderers[componentData::class.java]
                 if (rendererClass != null) {
                     val renderer = rendererClass.getDeclaredConstructor().newInstance()
-                    RendererComponent(renderer, componentData, action)
+                    RendererComponent(renderer, componentData, appState, action)
                 } else {
                     DefaultRendererComponent(componentData)
                 }
             }
-          //  HandleAction(action.value)
         }
     }
-
-    @Composable
-    fun HandleAction(action: Action) {
-        when (action) {
-            is Action.ShowModal -> {
-
-            }
-
-            is Action.Navigation -> {
-                // Show toast
-            }
-
-            Action.NoOperation -> {}
-
-        }
-    }
-
-    // Todo() it should be injected!
-    val actionHandler = RealActionHandler()
 
     @Composable
     private fun <T : Component> RendererComponent(
         renderer: UIComponent<out T>,
         componentData: Component,
+        appState: CryptoAppState,
         action: ActionListener? = null,
     ) {
         @Suppress("UNCHECKED_CAST")
-        (renderer as UIComponent<T>).BuildUI(componentData as T, action)
+        (renderer as UIComponent<T>).BuildUI(componentData as T, appState, action)
     }
 }

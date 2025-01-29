@@ -15,22 +15,23 @@ import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.domain.model.Screen
 import com.matin.youtech.crypto.sdui.Action
 import com.matin.youtech.crypto.sdui.UIRenderer
+import com.matin.youtech.crypto.ui.CryptoAppState
 import com.matin.youtech.crypto.ui.component.CryptoLoadingWheel
 
 typealias ActionListener = (Action) -> Unit
 
 @Composable
-fun DiscoverScreenRoute(viewModel: DiscoverScreenViewModel, action: ActionListener) {
+fun DiscoverScreenRoute(appState: CryptoAppState, viewModel: DiscoverScreenViewModel, action: ActionListener) {
 
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
-    DiscoverScreen(uiState.value, action)
+    DiscoverScreen(appState, uiState.value, action)
 }
 
 @Composable
-fun DiscoverScreen(uiState: DiscoveryScreenUIState, action: ActionListener) {
+fun DiscoverScreen(appState: CryptoAppState, uiState: DiscoveryScreenUIState, action: ActionListener) {
     when (uiState) {
         is DiscoveryScreenUIState.Success -> {
-            DiscoverScreenContent(screen = uiState.data, action)
+            DiscoverScreenContent(screen = uiState.data, appState = appState, action = action)
         }
 
         is DiscoveryScreenUIState.Loading -> {
@@ -49,12 +50,12 @@ fun DiscoverScreen(uiState: DiscoveryScreenUIState, action: ActionListener) {
 }
 
 @Composable
-fun DiscoverScreenContent(screen: Screen, action: ActionListener) {
+fun DiscoverScreenContent(screen: Screen, appState: CryptoAppState, action: ActionListener) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .windowInsetsPadding(WindowInsets.statusBars)
     ) {
-        UIRenderer().Render(screen, action)
+        UIRenderer().Render(screen, appState = appState, action = action)
     }
 }
