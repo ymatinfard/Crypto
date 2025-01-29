@@ -11,4 +11,5 @@ enum class ComponentType {
     RowTitleComponent,
     LineSpaceComponent,
     LineChartComponent,
+    ModalComponent,
 }

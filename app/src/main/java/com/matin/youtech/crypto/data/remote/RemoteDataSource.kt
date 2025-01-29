@@ -5,6 +5,7 @@ import com.matin.youtech.crypto.data.model.ComponentNetwork
 import com.matin.youtech.crypto.data.model.LineChartNetwork
 import com.matin.youtech.crypto.data.model.LineSpaceNetwork
 import com.matin.youtech.crypto.data.model.MarketItemNetwork
+import com.matin.youtech.crypto.data.model.ModalNetwork
 import com.matin.youtech.crypto.data.model.PortfolioNetwork
 import com.matin.youtech.crypto.data.model.RowTitleNetwork
 import com.matin.youtech.crypto.data.model.ScreenNetwork
@@ -42,6 +43,7 @@ class RemoteDataSourceImpl @Inject constructor(private val scope: CoroutineScope
                 subclass(RowTitleNetwork::class, RowTitleNetwork.serializer())
                 subclass(LineSpaceNetwork::class, LineSpaceNetwork.serializer())
                 subclass(LineChartNetwork::class, LineChartNetwork.serializer())
+                subclass(ModalNetwork::class, ModalNetwork.serializer())
             }
         }
     }
@@ -59,7 +61,6 @@ class RemoteDataSourceImpl @Inject constructor(private val scope: CoroutineScope
     }
 
     override suspend fun getDiscoveryScreen(): ScreenNetwork {
-        // delay(1000)
         return jsonParser.decodeFromString<ScreenNetwork>(getDemoScreen())
     }
 
