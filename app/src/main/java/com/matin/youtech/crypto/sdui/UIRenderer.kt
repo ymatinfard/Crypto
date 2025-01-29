@@ -2,40 +2,65 @@
 
 package com.matin.youtech.crypto.sdui
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.matin.youtech.annotaions.Component
-
 import com.matin.youtech.crypto.domain.model.Screen
+import com.matin.youtech.crypto.ui.screen.discover.ActionListener
 
 
-object UIRenderer {
+class UIRenderer {
     @Composable
-    fun Render(screen: Screen) {
-        LazyColumn(
-            modifier = Modifier.fillMaxSize()
+    fun Render(screen: Screen, action: ActionListener?) {
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
         ) {
-            items(screen.components) { componentData ->
+            screen.components.forEach { componentData ->
                 val rendererClass = componentRenderers[componentData::class.java]
                 if (rendererClass != null) {
                     val renderer = rendererClass.getDeclaredConstructor().newInstance()
-                    RendererComponent(renderer, componentData)
+                    RendererComponent(renderer, componentData, action)
                 } else {
                     DefaultRendererComponent(componentData)
                 }
             }
+          //  HandleAction(action.value)
         }
     }
 
     @Composable
+    fun HandleAction(action: Action) {
+        when (action) {
+            is Action.ShowModal -> {
+
+            }
+
+            is Action.Navigation -> {
+                // Show toast
+            }
+
+            Action.NoOperation -> {}
+
+        }
+    }
+
+    // Todo() it should be injected!
+    val actionHandler = RealActionHandler()
+
+    @Composable
     private fun <T : Component> RendererComponent(
         renderer: UIComponent<out T>,
-        componentData: Component
+        componentData: Component,
+        action: ActionListener? = null,
     ) {
         @Suppress("UNCHECKED_CAST")
-        (renderer as UIComponent<T>).BuildUI(componentData as T)
+        (renderer as UIComponent<T>).BuildUI(componentData as T, action)
     }
 }

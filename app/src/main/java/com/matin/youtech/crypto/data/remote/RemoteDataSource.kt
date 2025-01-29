@@ -2,6 +2,7 @@ package com.matin.youtech.crypto.data.remote
 
 import com.matin.youtech.crypto.data.model.BannerNetwork
 import com.matin.youtech.crypto.data.model.ComponentNetwork
+import com.matin.youtech.crypto.data.model.LineChartNetwork
 import com.matin.youtech.crypto.data.model.LineSpaceNetwork
 import com.matin.youtech.crypto.data.model.MarketItemNetwork
 import com.matin.youtech.crypto.data.model.PortfolioNetwork
@@ -10,6 +11,7 @@ import com.matin.youtech.crypto.data.model.ScreenNetwork
 import com.matin.youtech.crypto.data.model.TradeBotNetwork
 import com.matin.youtech.crypto.data.model.TradeRowNetwork
 import com.matin.youtech.crypto.data.repository.fakePortfolio
+import com.matin.youtech.crypto.data.repository.getDemoChartScreen
 import com.matin.youtech.crypto.data.repository.getFakeMarketList
 import com.matin.youtech.crypto.data.repository.getDemoScreen
 import kotlinx.coroutines.CoroutineScope
@@ -25,6 +27,7 @@ interface RemoteDataSource {
     fun getMarketList(): Flow<List<MarketItemNetwork>>
     suspend fun getPortfolio(): PortfolioNetwork
     suspend fun getDiscoveryScreen(): ScreenNetwork
+    suspend fun getScreen(id: String): ScreenNetwork
 }
 
 class RemoteDataSourceImpl @Inject constructor(private val scope: CoroutineScope) :
@@ -38,6 +41,7 @@ class RemoteDataSourceImpl @Inject constructor(private val scope: CoroutineScope
                 subclass(TradeBotNetwork::class, TradeBotNetwork.serializer())
                 subclass(RowTitleNetwork::class, RowTitleNetwork.serializer())
                 subclass(LineSpaceNetwork::class, LineSpaceNetwork.serializer())
+                subclass(LineChartNetwork::class, LineChartNetwork.serializer())
             }
         }
     }
@@ -57,5 +61,9 @@ class RemoteDataSourceImpl @Inject constructor(private val scope: CoroutineScope
     override suspend fun getDiscoveryScreen(): ScreenNetwork {
         // delay(1000)
         return jsonParser.decodeFromString<ScreenNetwork>(getDemoScreen())
+    }
+
+    override suspend fun getScreen(id: String): ScreenNetwork {
+        return jsonParser.decodeFromString<ScreenNetwork>(getDemoChartScreen())
     }
 }

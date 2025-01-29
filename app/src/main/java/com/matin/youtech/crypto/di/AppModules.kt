@@ -8,15 +8,17 @@ import com.matin.youtech.crypto.data.local.LocalDataSource
 import com.matin.youtech.crypto.data.local.LocalDataSourceImpl
 import com.matin.youtech.crypto.data.remote.RemoteDataSource
 import com.matin.youtech.crypto.data.remote.RemoteDataSourceImpl
-import com.matin.youtech.crypto.data.repository.DiscoveryRepository
-import com.matin.youtech.crypto.data.repository.DiscoveryRepositoryImpl
+import com.matin.youtech.crypto.data.repository.SDUIRepository
+import com.matin.youtech.crypto.data.repository.SDUIRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 
@@ -34,7 +36,7 @@ abstract class AppModules {
 
     @Binds
     @Singleton
-    abstract fun bindsDiscoveryRepository(discoveryRepositoryImpl: DiscoveryRepositoryImpl): DiscoveryRepository
+    abstract fun bindsDiscoveryRepository(discoveryRepositoryImpl: SDUIRepositoryImpl): SDUIRepository
 
     @Binds
     @Singleton
@@ -51,4 +53,20 @@ object AppModuleProvider {
 
     @Provides
     fun coroutineScope(): CoroutineScope = CoroutineScope(Dispatchers.IO)
+
+    @Provides
+    @ioDispatcher
+    fun ioDispatcher(): CoroutineDispatcher = Dispatchers.IO
+
+    @Provides
+    @mainDispatcher
+    fun mainDispatcher(): CoroutineDispatcher = Dispatchers.Main
 }
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class ioDispatcher
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class mainDispatcher

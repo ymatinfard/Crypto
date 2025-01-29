@@ -104,7 +104,7 @@ private fun MainContent(depositClick: () -> Unit) {
                 stringResource(id = R.string.invite_your_friend_to_get_40)
             ),
             iconUrl = ""
-        )
+        ), action = null
     )
 }
 

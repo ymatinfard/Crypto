@@ -3,6 +3,7 @@ package com.matin.youtech.crypto.designsystem
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,23 +35,27 @@ import coil.compose.rememberAsyncImagePainter
 import com.matin.youtech.annotaions.ComponentRenderer
 import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.domain.model.Banner
+import com.matin.youtech.crypto.sdui.Action
 import com.matin.youtech.crypto.sdui.UIComponent
+import com.matin.youtech.crypto.ui.screen.discover.ActionListener
 import kotlin.math.absoluteValue
 
-@ComponentRenderer(component = Banner::class)
+@ComponentRenderer(dataComponent = Banner::class)
 class BannerComponent : UIComponent<Banner> {
 
     @Composable
-    override fun BuildUI(data: Banner) {
-        Banner(data)
+    override fun BuildUI(data: Banner, action: ActionListener?) {
+        Banner(data, action)
     }
 
     @OptIn(ExperimentalFoundationApi::class)
     @Composable
-    fun Banner(banner: Banner) {
+    fun Banner(banner: Banner, action: ActionListener?) {
         val state = rememberPagerState(pageCount = { banner.description.size })
 
-        Column(modifier = Modifier.padding(vertical = 8.dp)) {
+        Column(modifier = Modifier.padding(vertical = 8.dp).clickable {
+            action?.invoke(Action.Navigation("banner:123"))
+        }) {
             Divider(
                 modifier = Modifier
                     .fillMaxWidth()

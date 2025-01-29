@@ -1,6 +1,7 @@
 package com.matin.youtech.crypto.designsystem
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,19 +30,21 @@ import com.matin.youtech.annotaions.ComponentRenderer
 import com.matin.youtech.crypto.R
 import com.matin.youtech.crypto.domain.model.TradeItem
 import com.matin.youtech.crypto.domain.model.TradeRow
+import com.matin.youtech.crypto.sdui.Action
 import com.matin.youtech.crypto.sdui.UIComponent
+import com.matin.youtech.crypto.ui.screen.discover.ActionListener
 
-@ComponentRenderer(component = TradeRow::class)
+@ComponentRenderer(dataComponent = TradeRow::class)
 class TradeRowComponent : UIComponent<TradeRow> {
 
     @Composable
-    override fun BuildUI(data: TradeRow) {
-        TradeRow(tradeRow = data)
+    override fun BuildUI(data: TradeRow, action: ActionListener?) {
+        TradeRow(tradeRow = data, action)
     }
 
     @Composable
     fun TradeRow(
-        tradeRow: TradeRow
+        tradeRow: TradeRow, action: ActionListener?
     ) {
         val screenWith = LocalConfiguration.current.screenWidthDp.dp
         val itemPadding = 6.dp
@@ -53,7 +56,8 @@ class TradeRowComponent : UIComponent<TradeRow> {
                 items(tradeRow.children) {
                     TradeRowItem(
                         modifier = Modifier.width(screenWith / 2 - (itemPadding * 2) - SCREEN_SIDE_PADDING.dp),
-                        item = it
+                        item = it,
+                        action,
                     )
                 }
             }
@@ -68,10 +72,12 @@ class TradeRowComponent : UIComponent<TradeRow> {
             iconUrl = "icon_url",
             price = "345.123",
             change = "1.2%"
-        )
+        ), action: ActionListener?,
     ) {
         Card(
-            modifier = modifier,
+            modifier = modifier.clickable {
+                action?.invoke(Action.Navigation("trade_tem:123"))
+            },
             shape = RoundedCornerShape(12.dp),
             border = BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.outlineVariant),
             colors = CardDefaults.cardColors(containerColor = Color.Transparent)

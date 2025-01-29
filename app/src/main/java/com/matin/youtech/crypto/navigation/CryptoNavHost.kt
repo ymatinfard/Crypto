@@ -4,6 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.matin.youtech.crypto.sdui.Action
+import com.matin.youtech.crypto.ui.screen.container.navigation.CONTAINER_ROUTE
+import com.matin.youtech.crypto.ui.screen.container.navigation.containerScreen
 import com.matin.youtech.crypto.ui.screen.discover.navigation.discoverScreen
 import com.matin.youtech.crypto.ui.screen.market.navigation.MARKET_ROUTE
 import com.matin.youtech.crypto.ui.screen.market.navigation.marketScreen
@@ -14,6 +17,15 @@ fun CryptoNavHost(modifier: Modifier, navController: NavHostController) {
     NavHost(modifier = modifier, navController = navController, startDestination = MARKET_ROUTE) {
         marketScreen()
         portfolioScreen()
-        discoverScreen()
+        discoverScreen(action = {
+            when (it) {
+                is Action.Navigation -> {
+                    navController.navigate(CONTAINER_ROUTE + "/${it.destination}")
+                }
+
+                else -> {}
+            }
+        })
+        containerScreen(action = {})
     }
 }
