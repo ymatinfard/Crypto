@@ -41,8 +41,8 @@ class SDUIRepositoryImpl @Inject constructor(
 
  private fun getCurrencyPrice() = flow {
         while (true) {
-            emit(getFakeCryptoCoinList())
             delay(3000)
+            emit(getFakeCryptoCoinList())
             Log.d("Crypto", "repository-getCurrencyPrice is running")
         }
     }.flowOn(ioDispatcher)

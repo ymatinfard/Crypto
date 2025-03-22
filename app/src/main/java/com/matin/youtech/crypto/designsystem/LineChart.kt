@@ -1,5 +1,6 @@
 package com.matin.youtech.crypto.designsystem
 
+import android.util.Log
 import androidx.compose.animation.core.EaseInOutCubic
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -35,7 +37,11 @@ class LineChartComponent : UIComponent<LineChart> {
     @Composable
     override fun BuildUI(chartData: LineChart, appState: CryptoAppState, action: ActionListener?) {
         val viewModel = hiltViewModel<CryptoCoinRefreshingViewModel>()
-        viewModel.setCoinName(chartData.label)
+
+        LaunchedEffect(Unit) {
+            viewModel.setCoinName(chartData.label)
+        }
+
         val coin by viewModel.coinData.collectAsStateWithLifecycle()
 
         Content(chartData, coin)
@@ -45,9 +51,14 @@ class LineChartComponent : UIComponent<LineChart> {
     fun Content(data: LineChart, coin: CryptoCoin?) {
         Column {
             Spacer(Modifier.height(30.dp))
-            Text(text = "Price: ${coin?.price}")
+            PriceDisplay(coin)
             Chart(data)
         }
+    }
+
+    @Composable
+    private fun PriceDisplay(coin: CryptoCoin?) {
+        Text(text = "Price: ${coin?.price}")
     }
 
     @Composable

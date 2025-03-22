@@ -160,31 +160,51 @@ fun getDemoScreen() = """{
           "coinName": "BTC",
           "iconUrl": "https://example.com/btc.png",
           "price": "345.123",
-          "change": "-4.65"
+          "change": "-4.65",
+          "action": {
+            "type": "navigation",
+            "data": "trade_tem:123"
+          }
         },
         {
           "coinName": "ETH",
           "iconUrl": "https://example.com/eth.png",
           "price": "234.567",
-          "change": "-3.2"
+          "change": "-3.2",
+          "action": {
+            "type": "navigation",
+            "data": "trade_tem:123"
+          }
         },
         {
           "coinName": "LTC",
           "iconUrl": "https://example.com/ltc.png",
           "price": "123.456",
-          "change": "-2.13"
+          "change": "-2.13",
+          "action": {
+            "type": "navigation",
+            "data": "trade_tem:123"
+          }
         },
         {
           "coinName": "SOL",
           "iconUrl": "https://example.com/sol.png",
           "price": "123.456",
-          "change": "-8.2"
+          "change": "-8.2",
+          "action": {
+            "type": "navigation",
+            "data": "trade_tem:123"
+          }
         },
         {
           "coinName": "LINK",
           "iconUrl": "https://example.com/link.png",
           "price": "123.456",
-          "change": "-5.29"
+          "change": "-5.29",
+          "action": {
+            "type": "navigation",
+            "data": "trade_tem:123"
+          }
         }
       ]
     },
@@ -204,31 +224,51 @@ fun getDemoScreen() = """{
           "coinName": "BTC",
           "iconUrl": "https://example.com/btc.png",
           "price": "345.123",
-          "change": "1.2"
+          "change": "1.2",
+          "action": {
+            "type": "navigation",
+            "data": "trade_tem:123"
+          }
         },
         {
           "coinName": "ETH",
           "iconUrl": "https://example.com/eth.png",
           "price": "234.567",
-          "change": "0.5"
+          "change": "0.5",
+          "action": {
+            "type": "navigation",
+            "data": "trade_tem:123"
+          }
         },
         {
           "coinName": "LTC",
           "iconUrl": "https://example.com/ltc.png",
           "price": "123.456",
-          "change": "-0.8"
+          "change": "-0.8",
+          "action": {
+            "type": "navigation",
+            "data": "trade_tem:123"
+          }
         },
         {
           "coinName": "SOL",
           "iconUrl": "https://example.com/sol.png",
           "price": "123.456",
-          "change": "-0.8"
+          "change": "-0.8",
+          "action": {
+            "type": "navigation",
+            "data": "trade_tem:123"
+          }
         },
         {
           "coinName": "LINK",
           "iconUrl": "https://example.com/link.png",
           "price": "123.456",
-          "change": "-0.8"
+          "change": "-0.8",
+          "action": {
+            "type": "navigation",
+            "data": "trade_tem:123"
+          }
         }
       ]
     },
@@ -316,31 +356,51 @@ fun getDemoScreen() = """{
                 "coinName": "BTC",
                 "iconUrl": "https://example.com/btc.png",
                 "price": "345.123",
-                "change": "-4.65"
+                "change": "-4.65",
+                "action": {
+                  "type": "navigation",
+                  "data": "trade_tem:123"
+                }
               },
               {
                 "coinName": "ETH",
                 "iconUrl": "https://example.com/eth.png",
                 "price": "234.567",
-                "change": "-3.2"
+                "change": "-3.2",
+                "action": {
+                  "type": "navigation",
+                  "data": "trade_tem:123"
+                }
               },
               {
                 "coinName": "LTC",
                 "iconUrl": "https://example.com/ltc.png",
                 "price": "123.456",
-                "change": "-2.13"
+                "change": "-2.13",
+                "action": {
+                  "type": "navigation",
+                  "data": "trade_tem:123"
+                }
               },
               {
                 "coinName": "SOL",
                 "iconUrl": "https://example.com/sol.png",
                 "price": "123.456",
-                "change": "-8.2"
+                "change": "-8.2",
+                "action": {
+                  "type": "navigation",
+                  "data": "trade_tem:123"
+                }
               },
               {
                 "coinName": "LINK",
                 "iconUrl": "https://example.com/link.png",
                 "price": "123.456",
-                "change": "-5.29"
+                "change": "-5.29",
+                "action": {
+                  "type": "navigation",
+                  "data": "trade_tem:123"
+                }
               }
             ]
           }

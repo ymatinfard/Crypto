@@ -12,14 +12,16 @@ data class TradeItemNetwork(
     val coinName: String,
     val iconUrl: String,
     val price: String,
-    val change: String
+    val change: String,
+    val action: ActionNetwork,
 ) : ComponentNetwork {
     override fun toDomain(): Component {
         return TradeItem(
             coinName = coinName,
             iconUrl = iconUrl,
             price = price,
-            change = change
+            change = change,
+            action = action.toDomain(),
         )
     }
 }

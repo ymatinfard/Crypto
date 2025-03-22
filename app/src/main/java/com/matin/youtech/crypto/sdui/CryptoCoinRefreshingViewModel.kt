@@ -1,5 +1,6 @@
 package com.matin.youtech.crypto.sdui
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.matin.youtech.crypto.data.repository.SDUIRepository

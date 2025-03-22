@@ -72,12 +72,13 @@ class TradeRowComponent : UIComponent<TradeRow> {
             coinName = "BTC",
             iconUrl = "icon_url",
             price = "345.123",
-            change = "1.2%"
-        ), action: ActionListener?,
+            change = "1.2%",
+            action = Action.Navigation("trade_tem:123")
+        ), actionListener: ActionListener?,
     ) {
         Card(
             modifier = modifier.clickable {
-                action?.invoke(Action.Navigation("trade_tem:123"))
+                actionListener?.invoke(item.action)
             },
             shape = RoundedCornerShape(12.dp),
             border = BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.outlineVariant),
