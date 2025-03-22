@@ -2,17 +2,25 @@ package com.matin.youtech.crypto.designsystem
 
 import androidx.compose.animation.core.EaseInOutCubic
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.matin.youtech.annotaions.ComponentRenderer
+import com.matin.youtech.crypto.domain.model.CryptoCoin
 import com.matin.youtech.crypto.domain.model.LineChart
+import com.matin.youtech.crypto.sdui.CryptoCoinRefreshingViewModel
 import com.matin.youtech.crypto.sdui.UIComponent
 import com.matin.youtech.crypto.ui.CryptoAppState
 import com.matin.youtech.crypto.ui.screen.discover.ActionListener
@@ -25,12 +33,25 @@ import ir.ehsannarmani.compose_charts.models.Line
 class LineChartComponent : UIComponent<LineChart> {
 
     @Composable
-    override fun BuildUI(data: LineChart, appState: CryptoAppState, action: ActionListener?) {
-        Chart(data)
+    override fun BuildUI(chartData: LineChart, appState: CryptoAppState, action: ActionListener?) {
+        val viewModel = hiltViewModel<CryptoCoinRefreshingViewModel>()
+        viewModel.setCoinName(chartData.label)
+        val coin by viewModel.coinData.collectAsStateWithLifecycle()
+
+        Content(chartData, coin)
     }
 
     @Composable
-    fun Chart(data: LineChart) {
+    fun Content(data: LineChart, coin: CryptoCoin?) {
+        Column {
+            Spacer(Modifier.height(30.dp))
+            Text(text = "Price: ${coin?.price}")
+            Chart(data)
+        }
+    }
+
+    @Composable
+    private fun Chart(data: LineChart) {
         LineChart(
             modifier = Modifier
                 .fillMaxWidth()
@@ -51,7 +72,7 @@ class LineChartComponent : UIComponent<LineChart> {
                 )
             },
             animationMode = AnimationMode.Together(delayBuilder = {
-                it   * 500L
+                it * 500L
             }),
         )
     }

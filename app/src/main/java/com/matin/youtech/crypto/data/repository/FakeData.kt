@@ -353,6 +353,7 @@ fun getDemoScreen() = """{
 fun getDemoChartScreen() = """{
           "title": "Discover",
          "components": [
-            {"type": "LineChartComponent", "label": "BTC", "points": [10.2, 23.34, 19, 32, 24.3, 29.1]}
+            {"type": "LineChartComponent", "label": "BTC1", "points": [10.2, 23.34, 19, 32, 24.3, 29.1]},
+            {"type": "LineChartComponent", "label": "BTC2", "points": [10.2, 23.34, 19, 32, 24.3, 29.1]}
             ]
 }""".trimIndent()
