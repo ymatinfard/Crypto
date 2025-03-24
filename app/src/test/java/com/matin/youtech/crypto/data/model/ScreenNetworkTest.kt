@@ -5,6 +5,7 @@ import com.matin.youtech.crypto.domain.model.Banner
 import com.matin.youtech.crypto.domain.model.Screen
 import com.matin.youtech.crypto.domain.model.TradeItem
 import com.matin.youtech.crypto.domain.model.TradeRow
+import com.matin.youtech.crypto.sdui.Action
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -27,7 +28,8 @@ class ScreenNetworkTest {
                             coinName = "Coin 1",
                             iconUrl = "http://example_url.com",
                             price = "100",
-                            change = "1%"
+                            change = "1%",
+                            action = ActionNetwork(type = "navigation", data = "navigation_data")
                         )
                     )
                 )
@@ -48,7 +50,8 @@ class ScreenNetworkTest {
                             coinName = "Coin 1",
                             iconUrl = "http://example_url.com",
                             price = "100",
-                            change = "1%"
+                            change = "1%",
+                            action = Action.Navigation(destination = "navigation_data")
                         )
                     )
                 )
