@@ -1,6 +1,5 @@
 package com.matin.youtech.crypto.designsystem
 
-import android.util.Log
 import androidx.compose.animation.core.EaseInOutCubic
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column

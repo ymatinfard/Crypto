@@ -119,6 +119,13 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.kotlinx.serialization.json)
     implementation (libs.compose.charts)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.sse)
+    testImplementation (libs.mockito.mockito.core)
+    testImplementation (libs.mockito.kotlin)
+    testImplementation (libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockwebserver)
+    testImplementation(libs.turbine) // For Flow testing
 
     ksp (project(":processes"))
     ksp(libs.hilt.compiler)
@@ -131,4 +138,5 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    testImplementation(kotlin("test"))
 }

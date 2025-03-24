@@ -8,6 +8,8 @@ import com.matin.youtech.crypto.data.local.LocalDataSource
 import com.matin.youtech.crypto.data.local.LocalDataSourceImpl
 import com.matin.youtech.crypto.data.remote.RemoteDataSource
 import com.matin.youtech.crypto.data.remote.RemoteDataSourceImpl
+import com.matin.youtech.crypto.data.remote.sse.SSEClient
+import com.matin.youtech.crypto.data.remote.sse.SSEClientImpl
 import com.matin.youtech.crypto.data.repository.SDUIRepository
 import com.matin.youtech.crypto.data.repository.SDUIRepositoryImpl
 import dagger.Binds
@@ -18,6 +20,7 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import okhttp3.OkHttpClient
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
@@ -45,6 +48,10 @@ abstract class AppModules {
     @Binds
     @Singleton
     abstract fun bindsLocalDataSource(localDataSourceImpl: LocalDataSourceImpl): LocalDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindsDispatcher(sseClient: SSEClientImpl): SSEClient
 }
 
 @Module
@@ -61,6 +68,10 @@ object AppModuleProvider {
     @Provides
     @mainDispatcher
     fun mainDispatcher(): CoroutineDispatcher = Dispatchers.Main
+
+    @Provides
+    @Singleton
+    fun provideOkhttpClient(): OkHttpClient = OkHttpClient()
 }
 
 @Qualifier

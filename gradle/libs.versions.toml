@@ -9,15 +9,21 @@ coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
+kotlinxCoroutinesTest = "1.7.3"
 lifecycleRuntimeKtx = "2.8.3"
 activityCompose = "1.9.0"
 composeBom = "2024.06.00"
 lifecycleViewmodelCompose = "2.8.3"
+mockitoKotlin = "4.1.0"
+mockitoMockitoCore = "4.11.0"
+mockwebserver = "4.11.0"
 retrofit = "2.11.0"
+okhttp = "4.12.0"
 toolsCore = "1.0.0-alpha09"
 hilt = "2.51.1"
 ksp = "2.0.0-1.0.21"
 junitJunit = "4.12"
+turbine = "1.0.0"
 uiautomator = "2.3.0"
 benchmarkMacroJunit4 = "1.2.4"
 navigationCommonKtx = "2.7.7"
@@ -56,10 +62,16 @@ androidx-benchmark-macro-junit4 = { group = "androidx.benchmark", name = "benchm
 androidx-navigation-common-ktx = { group = "androidx.navigation", name = "navigation-common-ktx", version.ref = "navigationCommonKtx" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
+mockito-mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoMockitoCore" }
+mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "mockwebserver" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 symbol-processing-api-v20201024 = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "comGoogleDevtoolsKspSymbolProcessingApi" }
-
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+okhttp-sse = { module = "com.squareup.okhttp3:okhttp-sse", version.ref = "okhttp" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

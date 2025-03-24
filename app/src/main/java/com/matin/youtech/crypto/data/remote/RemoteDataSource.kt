@@ -11,6 +11,7 @@ import com.matin.youtech.crypto.data.model.RowTitleNetwork
 import com.matin.youtech.crypto.data.model.ScreenNetwork
 import com.matin.youtech.crypto.data.model.TradeBotNetwork
 import com.matin.youtech.crypto.data.model.TradeRowNetwork
+import com.matin.youtech.crypto.data.remote.sse.SSEClient
 import com.matin.youtech.crypto.data.repository.fakePortfolio
 import com.matin.youtech.crypto.data.repository.getDemoChartScreen
 import com.matin.youtech.crypto.data.repository.getFakeMarketList
@@ -31,7 +32,7 @@ interface RemoteDataSource {
     suspend fun getScreen(id: String): ScreenNetwork
 }
 
-class RemoteDataSourceImpl @Inject constructor(private val scope: CoroutineScope) :
+class RemoteDataSourceImpl @Inject constructor(private val scope: CoroutineScope, private val sseClient: SSEClient) :
     RemoteDataSource {
     val jsonParser = Json {
         ignoreUnknownKeys = true
