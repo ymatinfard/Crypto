@@ -17,7 +17,6 @@ import com.matin.youtech.crypto.ui.screen.discover.ActionListener
 class UIRenderer {
     @Composable
     fun Render(screen: Screen, appState: CryptoAppState, action: ActionListener?) {
-
         Column(
             modifier = Modifier
                 .fillMaxSize()

@@ -2,26 +2,24 @@ package com.matin.youtech.crypto.data.repository
 
 import com.matin.youtech.crypto.data.remote.RemoteDataSource
 import com.matin.youtech.crypto.data.toDomain
+import com.matin.youtech.crypto.di.ioDispatcher
+import com.matin.youtech.crypto.domain.MarketRepository
 import com.matin.youtech.crypto.domain.model.MarketItem
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-interface MarketRepository {
-    fun getMarketList(): Flow<List<MarketItem>>
-}
-
-class MarketRepositoryImpl @Inject constructor(private val remoteDataSource: RemoteDataSource) :
+class MarketRepositoryImpl @Inject constructor(
+    private val remoteDataSource: RemoteDataSource,
+    @ioDispatcher private val ioDispatcher: CoroutineDispatcher
+) :
     MarketRepository {
     @OptIn(ExperimentalCoroutinesApi::class)
     override fun getMarketList(): Flow<List<MarketItem>> =
-        remoteDataSource.getMarketList().flatMapLatest {
-            flow {
-                emit(it.toDomain())
-            }.flowOn(Dispatchers.IO)
-    }
+        remoteDataSource.getMarketList().map {
+            it.toDomain()
+        }.flowOn(ioDispatcher)
 }

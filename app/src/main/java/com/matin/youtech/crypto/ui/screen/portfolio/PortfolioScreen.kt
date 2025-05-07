@@ -71,7 +71,8 @@ fun PortfolioScreen(uiState: State<Data<Portfolio>>) {
 @Composable
 private fun PortfolioScreenContent(data: Portfolio) {
     BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
-        val topSectionHeight = maxHeight * .6f
+        val screenHeight = this.maxHeight
+        val topSectionHeight = screenHeight * .6f
         val selectedTabIndex = remember {
             mutableIntStateOf(0)
         }

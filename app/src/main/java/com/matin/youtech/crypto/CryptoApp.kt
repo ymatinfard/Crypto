@@ -19,7 +19,6 @@ fun CryptoApp() {
         mutableStateOf(TopLevelDestination.Market)
     }
 
-
     Column {
         CryptoNavHost(modifier = Modifier.weight(1f), appState = appState)
         CryptoBottomNavigation(
